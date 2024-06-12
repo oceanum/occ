@@ -10,6 +10,8 @@ Welcome to Our Changing Coasts's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   demo
+
 
 
 Indices and tables
