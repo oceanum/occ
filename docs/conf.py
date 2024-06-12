@@ -23,8 +23,8 @@ extensions = [
     "IPython.sphinxext.ipython_directive",
 ]
 
-templates_path = ["_templates"]
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+templates_path = ["templates"]
+exclude_patterns = ["build", "Thumbs.db", ".DS_Store"]
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -44,4 +44,4 @@ html_theme_options = {
         }
     ],
 }
-html_static_path = ["_static"]
+html_static_path = ["static"]
