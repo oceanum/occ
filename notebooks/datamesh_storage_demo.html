@@ -1,0 +1,1582 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Basic operations in datamesh &#8212; Our Changing Coasts  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/datamesh_storage_demo';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CMIP6 datacubes short tutorial" href="cmip6datacube_demo.html" />
+    <link rel="prev" title="Demonstration notebooks" href="../demo.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Our Changing Coasts  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item pst-header-nav-item current active">
+  <a class="nav-link nav-internal" href="../demo.html">
+    Demonstration notebooks
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/oceanum/occ" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item pst-header-nav-item current active">
+  <a class="nav-link nav-internal" href="../demo.html">
+    Demonstration notebooks
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/oceanum/occ" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basic operations in datamesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cmip6datacube_demo.html">CMIP6 datacubes short tutorial</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="multiscale_tidegrid_demo.html">Example query 1</a></li>
+
+
+
+
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../demo.html" class="nav-link">Demonstration notebooks</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Basic...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Basic-operations-in-datamesh">
+<h1>Basic operations in datamesh<a class="headerlink" href="#Basic-operations-in-datamesh" title="Link to this heading">#</a></h1>
+<section id="Install-libraries">
+<h2>Install libraries<a class="headerlink" href="#Install-libraries" title="Link to this heading">#</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Basic libraries</span>
+<span class="c1">#!pip install numpy matplotlib cartopy</span>
+
+<span class="c1"># Base oceanum library</span>
+<span class="c1">#!pip install oceanum -U</span>
+
+<span class="c1"># Jupyter extention for graphical interaction with datamesh</span>
+<span class="c1"># !pip install oceanumlab</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colors</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+
+<span class="kn">from</span> <span class="nn">oceanum.datamesh</span> <span class="kn">import</span> <span class="n">Connector</span>
+<span class="kn">from</span> <span class="nn">oceanum.datamesh.datasource</span> <span class="kn">import</span> <span class="n">Coordinates</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Connect-to-datamesh">
+<h2>Connect to datamesh<a class="headerlink" href="#Connect-to-datamesh" title="Link to this heading">#</a></h2>
+<p>Define your datamesh token in evironment variables as DATAMESH_TOKEN or insert into argument below.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">oceanum.datamesh</span> <span class="kn">import</span> <span class="n">Connector</span>
+<span class="c1">#Put your datamesh token in the Jupyterlab settings, or as argument in the constructor below</span>
+<span class="n">datamesh</span><span class="o">=</span><span class="n">Connector</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<section id="Timeseries-data">
+<h3>Timeseries data<a class="headerlink" href="#Timeseries-data" title="Link to this heading">#</a></h3>
+<p>TODO</p>
+</section>
+<section id="Gridded-data">
+<h3>Gridded data<a class="headerlink" href="#Gridded-data" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We begin by extracting some data. Of course this can also be done using data that you have already.</span>
+<span class="c1"># Here we are extracting 1year of era5 surface winds over new zealand</span>
+<span class="c1"># We are using query here, just because its faster for remote access of large datasets as the slicing is done on the server,</span>
+<span class="c1"># however you could also use load_datasource to get a lazy view of the full 40+y global dataset and slice as required</span>
+
+<span class="n">era5_nz</span><span class="o">=</span><span class="n">datamesh</span><span class="o">.</span><span class="n">query</span><span class="p">({</span>
+  <span class="s2">&quot;datasource&quot;</span><span class="p">:</span> <span class="s2">&quot;era5_wind10m&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;ECMWF ERA5 global 10m wind hindcast&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;timefilter&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;times&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;2000-01-01T00:00:00.000Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;2000-01-07T00:00:00.000Z&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;geofilter&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;bbox&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;geom&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mi">165</span><span class="p">,</span>
+      <span class="o">-</span><span class="mi">48</span><span class="p">,</span>
+      <span class="mi">180</span><span class="p">,</span>
+      <span class="o">-</span><span class="mi">33</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+<span class="n">era5_nz</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
+Dimensions:    (latitude: 61, longitude: 61, time: 145)
+Coordinates:
+  * latitude   (latitude) float32 -33.0 -33.25 -33.5 ... -47.5 -47.75 -48.0
+  * longitude  (longitude) float32 165.0 165.2 165.5 165.8 ... 179.5 179.8 180.0
+  * time       (time) datetime64[ns] 2000-01-01 ... 2000-01-07
+Data variables:
+    u10        (time, latitude, longitude) float32 6.509 6.28 ... 4.814 4.804
+    v10        (time, latitude, longitude) float32 -6.899 -6.789 ... 2.422 2.587
+Attributes:
+    Conventions:   CF-1.6
+    history:       2024-01-06 05:08:35 GMT by grib_to_netcdf-2.25.1: /opt/ecm...
+    _coordinates:  {&quot;t&quot;:&quot;time&quot;,&quot;x&quot;:&quot;longitude&quot;,&quot;y&quot;:&quot;latitude&quot;}</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-6b824b77-0d60-4c82-b765-03ced430e3b7' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-6b824b77-0d60-4c82-b765-03ced430e3b7' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>latitude</span>: 61</li><li><span class='xr-has-index'>longitude</span>: 61</li><li><span class='xr-has-index'>time</span>: 145</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-a43ae135-7c00-4a6d-877b-684f4ba33d90' class='xr-section-summary-in' type='checkbox'  checked><label for='section-a43ae135-7c00-4a6d-877b-684f4ba33d90' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-33.0 -33.25 -33.5 ... -47.75 -48.0</div><input id='attrs-1b90b8dc-9eb5-4793-9056-d0798ad63d80' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-1b90b8dc-9eb5-4793-9056-d0798ad63d80' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-21b5a308-6abc-4973-a5b6-3c864976b1dc' class='xr-var-data-in' type='checkbox'><label for='data-21b5a308-6abc-4973-a5b6-3c864976b1dc' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-33.  , -33.25, -33.5 , -33.75, -34.  , -34.25, -34.5 , -34.75, -35.  ,
+       -35.25, -35.5 , -35.75, -36.  , -36.25, -36.5 , -36.75, -37.  , -37.25,
+       -37.5 , -37.75, -38.  , -38.25, -38.5 , -38.75, -39.  , -39.25, -39.5 ,
+       -39.75, -40.  , -40.25, -40.5 , -40.75, -41.  , -41.25, -41.5 , -41.75,
+       -42.  , -42.25, -42.5 , -42.75, -43.  , -43.25, -43.5 , -43.75, -44.  ,
+       -44.25, -44.5 , -44.75, -45.  , -45.25, -45.5 , -45.75, -46.  , -46.25,
+       -46.5 , -46.75, -47.  , -47.25, -47.5 , -47.75, -48.  ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>165.0 165.2 165.5 ... 179.8 180.0</div><input id='attrs-7ae3f560-ec44-4815-a7de-3114342ea4c6' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-7ae3f560-ec44-4815-a7de-3114342ea4c6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-29508001-2c3f-4b18-88f6-0a3245ac01c2' class='xr-var-data-in' type='checkbox'><label for='data-29508001-2c3f-4b18-88f6-0a3245ac01c2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([165.  , 165.25, 165.5 , 165.75, 166.  , 166.25, 166.5 , 166.75, 167.  ,
+       167.25, 167.5 , 167.75, 168.  , 168.25, 168.5 , 168.75, 169.  , 169.25,
+       169.5 , 169.75, 170.  , 170.25, 170.5 , 170.75, 171.  , 171.25, 171.5 ,
+       171.75, 172.  , 172.25, 172.5 , 172.75, 173.  , 173.25, 173.5 , 173.75,
+       174.  , 174.25, 174.5 , 174.75, 175.  , 175.25, 175.5 , 175.75, 176.  ,
+       176.25, 176.5 , 176.75, 177.  , 177.25, 177.5 , 177.75, 178.  , 178.25,
+       178.5 , 178.75, 179.  , 179.25, 179.5 , 179.75, 180.  ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2000-01-01 ... 2000-01-07</div><input id='attrs-ec931086-b6dd-4289-af71-9f36c0be15b5' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-ec931086-b6dd-4289-af71-9f36c0be15b5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-61c8abae-5d5c-45e7-b364-38ce08e02f97' class='xr-var-data-in' type='checkbox'><label for='data-61c8abae-5d5c-45e7-b364-38ce08e02f97' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;2000-01-01T00:00:00.000000000&#x27;, &#x27;2000-01-01T01:00:00.000000000&#x27;,
+       &#x27;2000-01-01T02:00:00.000000000&#x27;, &#x27;2000-01-01T03:00:00.000000000&#x27;,
+       &#x27;2000-01-01T04:00:00.000000000&#x27;, &#x27;2000-01-01T05:00:00.000000000&#x27;,
+       &#x27;2000-01-01T06:00:00.000000000&#x27;, &#x27;2000-01-01T07:00:00.000000000&#x27;,
+       &#x27;2000-01-01T08:00:00.000000000&#x27;, &#x27;2000-01-01T09:00:00.000000000&#x27;,
+       &#x27;2000-01-01T10:00:00.000000000&#x27;, &#x27;2000-01-01T11:00:00.000000000&#x27;,
+       &#x27;2000-01-01T12:00:00.000000000&#x27;, &#x27;2000-01-01T13:00:00.000000000&#x27;,
+       &#x27;2000-01-01T14:00:00.000000000&#x27;, &#x27;2000-01-01T15:00:00.000000000&#x27;,
+       &#x27;2000-01-01T16:00:00.000000000&#x27;, &#x27;2000-01-01T17:00:00.000000000&#x27;,
+       &#x27;2000-01-01T18:00:00.000000000&#x27;, &#x27;2000-01-01T19:00:00.000000000&#x27;,
+       &#x27;2000-01-01T20:00:00.000000000&#x27;, &#x27;2000-01-01T21:00:00.000000000&#x27;,
+       &#x27;2000-01-01T22:00:00.000000000&#x27;, &#x27;2000-01-01T23:00:00.000000000&#x27;,
+       &#x27;2000-01-02T00:00:00.000000000&#x27;, &#x27;2000-01-02T01:00:00.000000000&#x27;,
+       &#x27;2000-01-02T02:00:00.000000000&#x27;, &#x27;2000-01-02T03:00:00.000000000&#x27;,
+       &#x27;2000-01-02T04:00:00.000000000&#x27;, &#x27;2000-01-02T05:00:00.000000000&#x27;,
+       &#x27;2000-01-02T06:00:00.000000000&#x27;, &#x27;2000-01-02T07:00:00.000000000&#x27;,
+       &#x27;2000-01-02T08:00:00.000000000&#x27;, &#x27;2000-01-02T09:00:00.000000000&#x27;,
+       &#x27;2000-01-02T10:00:00.000000000&#x27;, &#x27;2000-01-02T11:00:00.000000000&#x27;,
+       &#x27;2000-01-02T12:00:00.000000000&#x27;, &#x27;2000-01-02T13:00:00.000000000&#x27;,
+       &#x27;2000-01-02T14:00:00.000000000&#x27;, &#x27;2000-01-02T15:00:00.000000000&#x27;,
+       &#x27;2000-01-02T16:00:00.000000000&#x27;, &#x27;2000-01-02T17:00:00.000000000&#x27;,
+       &#x27;2000-01-02T18:00:00.000000000&#x27;, &#x27;2000-01-02T19:00:00.000000000&#x27;,
+       &#x27;2000-01-02T20:00:00.000000000&#x27;, &#x27;2000-01-02T21:00:00.000000000&#x27;,
+       &#x27;2000-01-02T22:00:00.000000000&#x27;, &#x27;2000-01-02T23:00:00.000000000&#x27;,
+       &#x27;2000-01-03T00:00:00.000000000&#x27;, &#x27;2000-01-03T01:00:00.000000000&#x27;,
+       &#x27;2000-01-03T02:00:00.000000000&#x27;, &#x27;2000-01-03T03:00:00.000000000&#x27;,
+       &#x27;2000-01-03T04:00:00.000000000&#x27;, &#x27;2000-01-03T05:00:00.000000000&#x27;,
+       &#x27;2000-01-03T06:00:00.000000000&#x27;, &#x27;2000-01-03T07:00:00.000000000&#x27;,
+       &#x27;2000-01-03T08:00:00.000000000&#x27;, &#x27;2000-01-03T09:00:00.000000000&#x27;,
+       &#x27;2000-01-03T10:00:00.000000000&#x27;, &#x27;2000-01-03T11:00:00.000000000&#x27;,
+       &#x27;2000-01-03T12:00:00.000000000&#x27;, &#x27;2000-01-03T13:00:00.000000000&#x27;,
+       &#x27;2000-01-03T14:00:00.000000000&#x27;, &#x27;2000-01-03T15:00:00.000000000&#x27;,
+       &#x27;2000-01-03T16:00:00.000000000&#x27;, &#x27;2000-01-03T17:00:00.000000000&#x27;,
+       &#x27;2000-01-03T18:00:00.000000000&#x27;, &#x27;2000-01-03T19:00:00.000000000&#x27;,
+       &#x27;2000-01-03T20:00:00.000000000&#x27;, &#x27;2000-01-03T21:00:00.000000000&#x27;,
+       &#x27;2000-01-03T22:00:00.000000000&#x27;, &#x27;2000-01-03T23:00:00.000000000&#x27;,
+       &#x27;2000-01-04T00:00:00.000000000&#x27;, &#x27;2000-01-04T01:00:00.000000000&#x27;,
+       &#x27;2000-01-04T02:00:00.000000000&#x27;, &#x27;2000-01-04T03:00:00.000000000&#x27;,
+       &#x27;2000-01-04T04:00:00.000000000&#x27;, &#x27;2000-01-04T05:00:00.000000000&#x27;,
+       &#x27;2000-01-04T06:00:00.000000000&#x27;, &#x27;2000-01-04T07:00:00.000000000&#x27;,
+       &#x27;2000-01-04T08:00:00.000000000&#x27;, &#x27;2000-01-04T09:00:00.000000000&#x27;,
+       &#x27;2000-01-04T10:00:00.000000000&#x27;, &#x27;2000-01-04T11:00:00.000000000&#x27;,
+       &#x27;2000-01-04T12:00:00.000000000&#x27;, &#x27;2000-01-04T13:00:00.000000000&#x27;,
+       &#x27;2000-01-04T14:00:00.000000000&#x27;, &#x27;2000-01-04T15:00:00.000000000&#x27;,
+       &#x27;2000-01-04T16:00:00.000000000&#x27;, &#x27;2000-01-04T17:00:00.000000000&#x27;,
+       &#x27;2000-01-04T18:00:00.000000000&#x27;, &#x27;2000-01-04T19:00:00.000000000&#x27;,
+       &#x27;2000-01-04T20:00:00.000000000&#x27;, &#x27;2000-01-04T21:00:00.000000000&#x27;,
+       &#x27;2000-01-04T22:00:00.000000000&#x27;, &#x27;2000-01-04T23:00:00.000000000&#x27;,
+       &#x27;2000-01-05T00:00:00.000000000&#x27;, &#x27;2000-01-05T01:00:00.000000000&#x27;,
+       &#x27;2000-01-05T02:00:00.000000000&#x27;, &#x27;2000-01-05T03:00:00.000000000&#x27;,
+       &#x27;2000-01-05T04:00:00.000000000&#x27;, &#x27;2000-01-05T05:00:00.000000000&#x27;,
+       &#x27;2000-01-05T06:00:00.000000000&#x27;, &#x27;2000-01-05T07:00:00.000000000&#x27;,
+       &#x27;2000-01-05T08:00:00.000000000&#x27;, &#x27;2000-01-05T09:00:00.000000000&#x27;,
+       &#x27;2000-01-05T10:00:00.000000000&#x27;, &#x27;2000-01-05T11:00:00.000000000&#x27;,
+       &#x27;2000-01-05T12:00:00.000000000&#x27;, &#x27;2000-01-05T13:00:00.000000000&#x27;,
+       &#x27;2000-01-05T14:00:00.000000000&#x27;, &#x27;2000-01-05T15:00:00.000000000&#x27;,
+       &#x27;2000-01-05T16:00:00.000000000&#x27;, &#x27;2000-01-05T17:00:00.000000000&#x27;,
+       &#x27;2000-01-05T18:00:00.000000000&#x27;, &#x27;2000-01-05T19:00:00.000000000&#x27;,
+       &#x27;2000-01-05T20:00:00.000000000&#x27;, &#x27;2000-01-05T21:00:00.000000000&#x27;,
+       &#x27;2000-01-05T22:00:00.000000000&#x27;, &#x27;2000-01-05T23:00:00.000000000&#x27;,
+       &#x27;2000-01-06T00:00:00.000000000&#x27;, &#x27;2000-01-06T01:00:00.000000000&#x27;,
+       &#x27;2000-01-06T02:00:00.000000000&#x27;, &#x27;2000-01-06T03:00:00.000000000&#x27;,
+       &#x27;2000-01-06T04:00:00.000000000&#x27;, &#x27;2000-01-06T05:00:00.000000000&#x27;,
+       &#x27;2000-01-06T06:00:00.000000000&#x27;, &#x27;2000-01-06T07:00:00.000000000&#x27;,
+       &#x27;2000-01-06T08:00:00.000000000&#x27;, &#x27;2000-01-06T09:00:00.000000000&#x27;,
+       &#x27;2000-01-06T10:00:00.000000000&#x27;, &#x27;2000-01-06T11:00:00.000000000&#x27;,
+       &#x27;2000-01-06T12:00:00.000000000&#x27;, &#x27;2000-01-06T13:00:00.000000000&#x27;,
+       &#x27;2000-01-06T14:00:00.000000000&#x27;, &#x27;2000-01-06T15:00:00.000000000&#x27;,
+       &#x27;2000-01-06T16:00:00.000000000&#x27;, &#x27;2000-01-06T17:00:00.000000000&#x27;,
+       &#x27;2000-01-06T18:00:00.000000000&#x27;, &#x27;2000-01-06T19:00:00.000000000&#x27;,
+       &#x27;2000-01-06T20:00:00.000000000&#x27;, &#x27;2000-01-06T21:00:00.000000000&#x27;,
+       &#x27;2000-01-06T22:00:00.000000000&#x27;, &#x27;2000-01-06T23:00:00.000000000&#x27;,
+       &#x27;2000-01-07T00:00:00.000000000&#x27;], dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-8ac7ff87-3a0a-4cd8-8553-0a62ead5fca0' class='xr-section-summary-in' type='checkbox'  checked><label for='section-8ac7ff87-3a0a-4cd8-8553-0a62ead5fca0' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>u10</span></div><div class='xr-var-dims'>(time, latitude, longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>6.509 6.28 6.042 ... 4.814 4.804</div><input id='attrs-5a4fe043-d146-416d-8712-ee9e74fd59ed' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-5a4fe043-d146-416d-8712-ee9e74fd59ed' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-469533e8-86ed-4d5c-9adb-9e830ef692ea' class='xr-var-data-in' type='checkbox'><label for='data-469533e8-86ed-4d5c-9adb-9e830ef692ea' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>10 metre U wind component</dd><dt><span>units :</span></dt><dd>m s**-1</dd><dt><span>valid_max :</span></dt><dd>300.0</dd><dt><span>valid_min :</span></dt><dd>-300.0</dd></dl></div><div class='xr-var-data'><pre>array([[[ 6.508995  ,  6.279881  ,  6.041602  , ..., -1.0334448 ,
+         -1.2075715 , -1.3358755 ],
+        [ 6.51816   ,  6.1424127 ,  5.8674755 , ..., -0.83182424,
+         -0.96929276, -1.0334448 ],
+        [ 6.2432227 ,  5.8674755 ,  5.620032  , ..., -0.666862  ,
+         -0.7218494 , -0.76767224],
+        ...,
+        [-2.2523324 , -2.600586  , -2.9488397 , ...,  0.8361273 ,
+          1.0377477 ,  1.3218493 ],
+        [-1.876585  , -2.2156742 , -2.554763  , ...,  1.1660517 ,
+          1.3676722 ,  1.5967865 ],
+        [-1.2442298 , -1.6932937 , -2.0415473 , ...,  1.5417991 ,
+          1.7159258 ,  1.9175464 ]],
+
+       [[ 7.0497046 ,  6.61897   ,  6.215729  , ..., -0.31860837,
+         -0.58438087, -0.8593179 ],
+        [ 7.022211  ,  6.600641  ,  6.215729  , ..., -0.21779813,
+         -0.46524146, -0.666862  ],
+        [ 6.8022614 ,  6.380691  ,  6.0141087 , ..., -0.19030441,
+         -0.32777295, -0.5110643 ],
+...
+        [ 6.7106156 ,  6.426514  ,  6.3165393 , ...,  4.556942  ,
+          4.566107  ,  4.566107  ],
+        [ 7.370465  ,  7.086363  ,  6.9214005 , ...,  4.6485877 ,
+          4.6577525 ,  4.694411  ],
+        [ 6.976388  ,  7.498769  ,  7.498769  , ...,  4.7402334 ,
+          4.7585626 ,  4.795221  ]],
+
+       [[ 3.411371  ,  3.8237767 ,  3.9979033 , ..., -4.2868667 ,
+         -4.186056  , -4.0944104 ],
+        [ 3.8054476 ,  4.098714  ,  4.318663  , ..., -4.1219044 ,
+         -4.066917  , -4.0119295 ],
+        [ 3.961245  ,  4.217853  ,  4.4652963 , ..., -3.8378026 ,
+         -3.8194735 , -3.764486  ],
+        ...,
+        [ 7.113857  ,  6.9397297 ,  6.765603  , ...,  4.7219043 ,
+          4.6760817 ,  4.6302586 ],
+        [ 7.535427  ,  7.3613    ,  7.2238317 , ...,  4.7677274 ,
+          4.731069  ,  4.71274   ],
+        [ 6.215729  ,  6.765603  ,  7.1780086 , ...,  4.8502083 ,
+          4.81355   ,  4.8043857 ]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>v10</span></div><div class='xr-var-dims'>(time, latitude, longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-6.899 -6.789 ... 2.422 2.587</div><input id='attrs-1e1d4ade-12ef-42f0-abfa-b03975baddcf' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1e1d4ade-12ef-42f0-abfa-b03975baddcf' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ce106da0-8fab-45ee-8885-c323e77359a9' class='xr-var-data-in' type='checkbox'><label for='data-ce106da0-8fab-45ee-8885-c323e77359a9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>10 metre V wind component</dd><dt><span>units :</span></dt><dd>m s**-1</dd><dt><span>valid_max :</span></dt><dd>300.0</dd><dt><span>valid_min :</span></dt><dd>-300.0</dd></dl></div><div class='xr-var-data'><pre>array([[[-6.89876842e+00, -6.78879356e+00, -6.59633780e+00, ...,
+         -7.07289553e+00, -6.81628752e+00, -6.67881918e+00],
+        [-7.27451611e+00, -7.14621210e+00, -6.95375586e+00, ...,
+         -6.99957895e+00, -6.76130009e+00, -6.61466694e+00],
+        [-7.54945278e+00, -7.43947792e+00, -7.30200958e+00, ...,
+         -7.12788296e+00, -6.96292067e+00, -6.79795837e+00],
+        ...,
+        [ 8.21360493e+00,  8.21360493e+00,  8.08530140e+00, ...,
+         -4.20438528e+00, -4.13106871e+00, -4.07608128e+00],
+        [ 7.69122458e+00,  7.68205976e+00,  7.60874319e+00, ...,
+         -4.24104357e+00, -4.16772699e+00, -4.12190437e+00],
+        [ 6.90307140e+00,  6.96722364e+00,  6.96722364e+00, ...,
+         -4.25937271e+00, -4.27770185e+00, -4.25020838e+00]],
+
+       [[-7.10038900e+00, -7.04540157e+00, -6.93542671e+00, ...,
+         -6.90793324e+00, -6.54135036e+00, -6.22975492e+00],
+        [-7.26535130e+00, -7.20119953e+00, -7.10955381e+00, ...,
+         -6.91709757e+00, -6.53218603e+00, -6.11061573e+00],
+        [-7.43031359e+00, -7.37532616e+00, -7.31117439e+00, ...,
+         -6.99957895e+00, -6.68798351e+00, -6.25724888e+00],
+...
+          2.51324320e+00,  2.64154720e+00,  2.81567407e+00],
+        [-1.80326843e+00, -1.94073701e+00, -2.12402844e+00, ...,
+          2.42159772e+00,  2.54990149e+00,  2.66904092e+00],
+        [ 1.57949194e-01, -9.87621903e-01, -1.72995198e+00, ...,
+          2.30245829e+00,  2.43076229e+00,  2.54990149e+00]],
+
+       [[-8.04434013e+00, -9.66646862e+00, -1.09128494e+01, ...,
+          1.67113751e-01,  4.51215386e-01,  7.81139851e-01],
+        [-7.71441507e+00, -9.19907570e+00, -1.04087982e+01, ...,
+          2.15152209e-03,  2.77088583e-01,  5.79519331e-01],
+        [-7.08205986e+00, -8.54839134e+00, -9.81310177e+00, ...,
+         -1.99468985e-01,  7.54680708e-02,  3.68734270e-01],
+        ...,
+        [-7.58507669e-01, -9.50963616e-01, -1.04260933e+00, ...,
+          2.32078743e+00,  2.49491405e+00,  2.69653463e+00],
+        [-3.73595774e-01, -5.56887150e-01, -8.77647042e-01, ...,
+          2.32078743e+00,  2.49491405e+00,  2.65071177e+00],
+        [ 2.18331885e+00,  1.30352020e+00,  3.22911412e-01, ...,
+          2.22914171e+00,  2.42159772e+00,  2.58655977e+00]]],
+      dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-d4a4ecc3-ec70-485f-a4b9-816f2f7318a0' class='xr-section-summary-in' type='checkbox'  ><label for='section-d4a4ecc3-ec70-485f-a4b9-816f2f7318a0' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>latitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-f03c01d7-4fad-49f7-9aeb-62cf591b6a61' class='xr-index-data-in' type='checkbox'/><label for='index-f03c01d7-4fad-49f7-9aeb-62cf591b6a61' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([ -33.0, -33.25,  -33.5, -33.75,  -34.0, -34.25,  -34.5, -34.75,  -35.0,
+       -35.25,  -35.5, -35.75,  -36.0, -36.25,  -36.5, -36.75,  -37.0, -37.25,
+        -37.5, -37.75,  -38.0, -38.25,  -38.5, -38.75,  -39.0, -39.25,  -39.5,
+       -39.75,  -40.0, -40.25,  -40.5, -40.75,  -41.0, -41.25,  -41.5, -41.75,
+        -42.0, -42.25,  -42.5, -42.75,  -43.0, -43.25,  -43.5, -43.75,  -44.0,
+       -44.25,  -44.5, -44.75,  -45.0, -45.25,  -45.5, -45.75,  -46.0, -46.25,
+        -46.5, -46.75,  -47.0, -47.25,  -47.5, -47.75,  -48.0],
+      dtype=&#x27;float32&#x27;, name=&#x27;latitude&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>longitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-0ae45509-6527-451b-997b-5da5303a8db1' class='xr-index-data-in' type='checkbox'/><label for='index-0ae45509-6527-451b-997b-5da5303a8db1' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([ 165.0, 165.25,  165.5, 165.75,  166.0, 166.25,  166.5, 166.75,  167.0,
+       167.25,  167.5, 167.75,  168.0, 168.25,  168.5, 168.75,  169.0, 169.25,
+        169.5, 169.75,  170.0, 170.25,  170.5, 170.75,  171.0, 171.25,  171.5,
+       171.75,  172.0, 172.25,  172.5, 172.75,  173.0, 173.25,  173.5, 173.75,
+        174.0, 174.25,  174.5, 174.75,  175.0, 175.25,  175.5, 175.75,  176.0,
+       176.25,  176.5, 176.75,  177.0, 177.25,  177.5, 177.75,  178.0, 178.25,
+        178.5, 178.75,  179.0, 179.25,  179.5, 179.75,  180.0],
+      dtype=&#x27;float32&#x27;, name=&#x27;longitude&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-8e981123-5b85-4b6d-b2a2-3c7a707fcbb0' class='xr-index-data-in' type='checkbox'/><label for='index-8e981123-5b85-4b6d-b2a2-3c7a707fcbb0' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2000-01-01 00:00:00&#x27;, &#x27;2000-01-01 01:00:00&#x27;,
+               &#x27;2000-01-01 02:00:00&#x27;, &#x27;2000-01-01 03:00:00&#x27;,
+               &#x27;2000-01-01 04:00:00&#x27;, &#x27;2000-01-01 05:00:00&#x27;,
+               &#x27;2000-01-01 06:00:00&#x27;, &#x27;2000-01-01 07:00:00&#x27;,
+               &#x27;2000-01-01 08:00:00&#x27;, &#x27;2000-01-01 09:00:00&#x27;,
+               ...
+               &#x27;2000-01-06 15:00:00&#x27;, &#x27;2000-01-06 16:00:00&#x27;,
+               &#x27;2000-01-06 17:00:00&#x27;, &#x27;2000-01-06 18:00:00&#x27;,
+               &#x27;2000-01-06 19:00:00&#x27;, &#x27;2000-01-06 20:00:00&#x27;,
+               &#x27;2000-01-06 21:00:00&#x27;, &#x27;2000-01-06 22:00:00&#x27;,
+               &#x27;2000-01-06 23:00:00&#x27;, &#x27;2000-01-07 00:00:00&#x27;],
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=145, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-e695a5c1-6c7a-40a3-80c5-7ca8923e32ca' class='xr-section-summary-in' type='checkbox'  checked><label for='section-e695a5c1-6c7a-40a3-80c5-7ca8923e32ca' class='xr-section-summary' >Attributes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.6</dd><dt><span>history :</span></dt><dd>2024-01-06 05:08:35 GMT by grib_to_netcdf-2.25.1: /opt/ecmwf/mars-client/bin/grib_to_netcdf.bin -S param -o /cache/data6/adaptor.mars.internal-1704517693.3341398-18522-9-a9972c78-6b74-4ffd-b749-32d7cf268fa5.nc /cache/tmp/a9972c78-6b74-4ffd-b749-32d7cf268fa5-adaptor.mars.internal-1704517660.7330503-18522-13-tmp.grib</dd><dt><span>_coordinates :</span></dt><dd>{&quot;t&quot;:&quot;time&quot;,&quot;x&quot;:&quot;longitude&quot;,&quot;y&quot;:&quot;latitude&quot;}</dd></dl></div></li></ul></div></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lets plot a single windspeed timestep to check the data</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=</span><span class="mi">180</span><span class="p">))</span>
+<span class="p">((</span><span class="n">era5_nz</span><span class="o">.</span><span class="n">u10</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">era5_nz</span><span class="o">.</span><span class="n">v10</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span><span class="mi">2</span> <span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;cartopy.mpl.feature_artist.FeatureArtist at 0x7f333726bb50&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_datamesh_storage_demo_9_1.png" src="../_images/notebooks_datamesh_storage_demo_9_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lets do some simple calculation. In this case, lets take the maean over time and plot the results</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lets check our current era5 datasets</span>
+<span class="n">cat</span> <span class="o">=</span> <span class="n">datamesh</span><span class="o">.</span><span class="n">get_catalog</span><span class="p">(</span><span class="s1">&#39;era5&#39;</span><span class="p">)</span>
+<span class="n">cat</span><span class="o">.</span><span class="n">ids</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;oceanum_wave_nz5km_era5_spec&#39;,
+ &#39;era5_mean_surface_downward_short_wave_radiation_flux&#39;,
+ &#39;oceanum_wave_glob05_era5_v1_grid&#39;,
+ &#39;oceanum_wave_mediterranean_era5_v1_grid&#39;,
+ &#39;oceanum_wave_nz1km_multiscale_era5_param&#39;,
+ &#39;oceanum_wave_nz1km_nz01_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz02_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz03_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz04_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz05_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz06_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz07_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz08_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz09_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz10_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz11_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz12_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz13_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz14_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz15_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz16_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz17_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz18_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz19_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz20_era5_spec&#39;,
+ &#39;oceanum_wave_nz_era5_v1_grid&#39;,
+ &#39;oceanum_wave_ptaranaki_era5_grid&#39;,
+ &#39;oceanum_wave_redsea_era5_grid&#39;,
+ &#39;oceanum_wave_redsea_era5_spec&#39;,
+ &#39;oceanum_wave_teararoa_era5_grid&#39;,
+ &#39;oceanum_wave_trki_era5_v1_grid&#39;,
+ &#39;oceanum_wave_weuro_era5_v1_grid&#39;,
+ &#39;oceanum_wave_weuro_era5_v1_spec&#39;,
+ &#39;oceanum_wave_wtwan_era5_v1_grid&#39;,
+ &#39;era5_nz_10m_wind_demo&#39;,
+ &#39;era5_seaicecon&#39;,
+ &#39;era5_temp2m&#39;,
+ &#39;era5_wind100m&#39;,
+ &#39;era5_wind10m&#39;,
+ &#39;era5_mslp&#39;,
+ &#39;oceanum_wave_ptlan_era5_grid&#39;,
+ &#39;oceanum_wave_trki_era5_v1_spec&#39;,
+ &#39;oceanum_wave_useast_era5_v1_spec&#39;,
+ &#39;gridstas_oceanum_wave_glob05_era5_v1&#39;,
+ &#39;gridstats_oceanum_wave_era5_nz_v1&#39;,
+ &#39;gridstats_oceanum_wave_era5_trki_v1&#39;,
+ &#39;gridstats_oceanum_wave_era5_weuro_v1&#39;,
+ &#39;oceanum_wave_bass_era5_grid&#39;,
+ &#39;oceanum_wave_bass_era5_spec&#39;,
+ &#39;oceanum_wave_glob05_era5_v1_spec&#39;,
+ &#39;oceanum_wave_nz_era5_v1_spec&#39;,
+ &#39;oceanum_wave_mediterranean_era5_v1_spec&#39;,
+ &#39;oceanum_wave_ntas_era5_grid&#39;,
+ &#39;oceanum_wave_ntas_era5_spec&#39;,
+ &#39;oceanum_wave_wtwan_era5_v1_spec&#39;,
+ &#39;era5_precip_rate&#39;,
+ &#39;oceanum_wave_ptlan_era5_spec&#39;,
+ &#39;oceanum_ocean_nz_schism_v1&#39;,
+ &#39;gridstats_oceanum_meteo_era5_trki_1km_v1&#39;,
+ &#39;oceanum_wave_glob05_era5_v1_grid_test&#39;,
+ &#39;our-changing-coast-coast_rp&#39;,
+ &#39;oceanum_ocean_nz_schism_zlevels_v1&#39;,
+ &#39;era5_nz_mean_windpsd_demo&#39;,
+ &#39;oceanum_wave_blacksea_cfsr_v1_grid&#39;,
+ &#39;oceanum_wave_blacksea_cfsr_v1_spec&#39;,
+ &#39;mercator_europe_nwshelf_surface&#39;,
+ &#39;oceanum-jervis_bay_ccam&#39;,
+ &#39;oceanum-jervis_bay_ccam_test&#39;,
+ &#39;cliflo_wind_3445_homogenised_gapfilled&#39;,
+ &#39;gridstats_oceanum_datacube_nz_schism_v1&#39;,
+ &#39;gridstats_oceanum_datacube_nz_swan_v1&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[82]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lets check the docs to write the datasource</span>
+datamesh.write_datasource<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Signature:</span>
+datamesh<span class="ansi-blue-fg">.</span>write_datasource<span class="ansi-blue-fg">(</span>
+    datasource_id<span class="ansi-blue-fg">,</span>
+    data<span class="ansi-blue-fg">,</span>
+    geometry<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
+    append<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
+    overwrite<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">,</span>
+    <span class="ansi-blue-fg">**</span>properties<span class="ansi-blue-fg">,</span>
+<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Docstring:</span>
+Write a datasource to datamesh from the work environment
+
+Args:
+    datasource_id (string): Unique datasource id
+    data (Union[:obj:`pandas.DataFrame`, :obj:`geopandas.GeoDataFrame`, :obj:`xarray.Dataset`, None]):  The data to be written to datamesh. If data is None, just update metadata properties.
+    geometry (:obj:`oceanum.datasource.Geometry`, optional): GeoJSON geometry of the datasource
+    append (string, optional): Coordinate to append on. default=None
+    overwrite (bool, optional): Overwrite existing datasource. default=False
+    **properties: Additional properties for the datasource - see :obj:`oceanum.datamesh.Datasource`
+
+Returns:
+    :obj:`oceanum.datamesh.Datasource`: The datasource instance that was written to
+<span class="ansi-red-fg">File:</span>      /source/github-oceanum-io/notebooks/.venv/lib/python3.11/site-packages/oceanum/datamesh/connection.py
+<span class="ansi-red-fg">Type:</span>      method
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[83]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># As mentioned in the docs above, lets check the relevant datasource properties that we may want to write</span>
+<span class="kn">from</span> <span class="nn">oceanum.datamesh</span> <span class="kn">import</span> <span class="n">Datasource</span>
+Datasource<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">Init signature:</span>
+Datasource<span class="ansi-blue-fg">(</span>
+    <span class="ansi-blue-fg">*</span><span class="ansi-blue-fg">,</span>
+    id<span class="ansi-blue-fg">:</span> typing<span class="ansi-blue-fg">.</span>Annotated<span class="ansi-blue-fg">[</span>str<span class="ansi-blue-fg">,</span> MinLen<span class="ansi-blue-fg">(</span>min_length<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">3</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> MaxLen<span class="ansi-blue-fg">(</span>max_length<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">80</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> _PydanticGeneralMetadata<span class="ansi-blue-fg">(</span>pattern<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;^[a-z0-9-_]+$&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span>
+    name<span class="ansi-blue-fg">:</span> typing<span class="ansi-blue-fg">.</span>Annotated<span class="ansi-blue-fg">[</span>str<span class="ansi-blue-fg">,</span> MaxLen<span class="ansi-blue-fg">(</span>max_length<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">64</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span>
+    description<span class="ansi-blue-fg">:</span> Annotated<span class="ansi-blue-fg">[</span>Optional<span class="ansi-blue-fg">[</span>str<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> MaxLen<span class="ansi-blue-fg">(</span>max_length<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">1500</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">&#39;&#39;</span><span class="ansi-blue-fg">,</span>
+    parameters<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>dict<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span>
+    geom<span class="ansi-blue-fg">:</span> Annotated<span class="ansi-blue-fg">[</span>Union<span class="ansi-blue-fg">[</span>shapely<span class="ansi-blue-fg">.</span>geometry<span class="ansi-blue-fg">.</span>point<span class="ansi-blue-fg">.</span>Point<span class="ansi-blue-fg">,</span> shapely<span class="ansi-blue-fg">.</span>geometry<span class="ansi-blue-fg">.</span>multipoint<span class="ansi-blue-fg">.</span>MultiPoint<span class="ansi-blue-fg">,</span> shapely<span class="ansi-blue-fg">.</span>geometry<span class="ansi-blue-fg">.</span>polygon<span class="ansi-blue-fg">.</span>Polygon<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&lt;</span><span class="ansi-green-fg">class</span> <span class="ansi-blue-fg">&#39;oceanum.datamesh.datasource._GeometryAnnotation&#39;</span><span class="ansi-blue-fg">&gt;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span>
+    tstart<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>datetime<span class="ansi-blue-fg">.</span>datetime<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
+    tend<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>datetime<span class="ansi-blue-fg">.</span>datetime<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
+    parchive<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>Annotated<span class="ansi-blue-fg">[</span>datetime<span class="ansi-blue-fg">.</span>timedelta<span class="ansi-blue-fg">,</span> BeforeValidator<span class="ansi-blue-fg">(</span>func<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&lt;</span>function parse_period at <span class="ansi-cyan-fg">0x7f337585cd60</span><span class="ansi-blue-fg">&gt;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
+    tags<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>list<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span>
+    info<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>dict<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">&#39;&#39;</span><span class="ansi-blue-fg">,</span>
+    schema<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>oceanum<span class="ansi-blue-fg">.</span>datamesh<span class="ansi-blue-fg">.</span>datasource<span class="ansi-blue-fg">.</span>Schema<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> Schema<span class="ansi-blue-fg">(</span>attrs<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span> dims<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span> coords<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span> data_vars<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>
+    coordinates<span class="ansi-blue-fg">:</span> Dict<span class="ansi-blue-fg">[</span>oceanum<span class="ansi-blue-fg">.</span>datamesh<span class="ansi-blue-fg">.</span>datasource<span class="ansi-blue-fg">.</span>Coordinates<span class="ansi-blue-fg">,</span> str<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span>
+    details<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>Annotated<span class="ansi-blue-fg">[</span>pydantic_core<span class="ansi-blue-fg">.</span>_pydantic_core<span class="ansi-blue-fg">.</span>Url<span class="ansi-blue-fg">,</span> UrlConstraints<span class="ansi-blue-fg">(</span>max_length<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> allowed_schemes<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;http&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;https&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> host_required<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> default_host<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> default_port<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> default_path<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
+    last_modified<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>datetime<span class="ansi-blue-fg">.</span>datetime<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> datetime<span class="ansi-blue-fg">.</span>datetime<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">2024</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">9</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">23</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">23</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">560522</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>
+    args<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>dict<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span>
+    driver<span class="ansi-blue-fg">:</span> str<span class="ansi-blue-fg">,</span>
+<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">-&gt;</span> <span class="ansi-green-fg">None</span>
+<span class="ansi-red-fg">Docstring:</span>      Datasource
+<span class="ansi-red-fg">Init docstring:</span>
+Create a new model by parsing and validating input data from keyword arguments.
+
+Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.
+
+`self` is explicitly positional-only to allow `self` as a field name.
+<span class="ansi-red-fg">File:</span>           /source/github-oceanum-io/notebooks/.venv/lib/python3.11/site-packages/oceanum/datamesh/datasource.py
+<span class="ansi-red-fg">Type:</span>           ModelMetaclass
+<span class="ansi-red-fg">Subclasses:</span>
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[92]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lets try writing the new data to datamesh. Here we set the tags, times and geom properties to aid searching later</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">era5_nz</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+
+<span class="n">datasource</span> <span class="o">=</span> <span class="n">datamesh</span><span class="o">.</span><span class="n">write_datasource</span><span class="p">(</span><span class="n">datasource_id</span><span class="o">=</span><span class="s1">&#39;era5_nz_10m_wind_demo&#39;</span><span class="p">,</span>
+                          <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Mean NZ ERA5 Surface Winds&quot;</span><span class="p">,</span>
+                          <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ERA5 winds over New Zealand&quot;</span><span class="p">,</span>
+                          <span class="n">data</span><span class="o">=</span><span class="n">era5_nz</span><span class="p">,</span>
+                          <span class="n">coordinates</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;t&quot;</span><span class="p">:</span><span class="s2">&quot;time&quot;</span><span class="p">,</span><span class="s2">&quot;x&quot;</span><span class="p">:</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span><span class="s2">&quot;y&quot;</span><span class="p">:</span><span class="s2">&quot;latitude&quot;</span><span class="p">},</span>
+                          <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;demo&#39;</span><span class="p">,</span> <span class="s1">&#39;nz&#39;</span><span class="p">,</span> <span class="s1">&#39;era5&#39;</span><span class="p">],</span>
+                          <span class="n">tstart</span><span class="o">=</span><span class="n">times</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                          <span class="n">tend</span><span class="o">=</span><span class="n">times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                          <span class="n">geom</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="s1">&#39;Polygon&#39;</span><span class="p">,</span><span class="s1">&#39;coordinates&#39;</span><span class="p">:[[[</span><span class="n">era5_nz</span><span class="o">.</span><span class="n">longitude</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="n">era5_nz</span><span class="o">.</span><span class="n">latitude</span><span class="o">.</span><span class="n">min</span><span class="p">()],</span>
+                                                                 <span class="p">[</span><span class="n">era5_nz</span><span class="o">.</span><span class="n">longitude</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span><span class="n">era5_nz</span><span class="o">.</span><span class="n">latitude</span><span class="o">.</span><span class="n">min</span><span class="p">()],</span>
+                                                                 <span class="p">[</span><span class="n">era5_nz</span><span class="o">.</span><span class="n">longitude</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span><span class="n">era5_nz</span><span class="o">.</span><span class="n">latitude</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span>
+                                                                 <span class="p">[</span><span class="n">era5_nz</span><span class="o">.</span><span class="n">longitude</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="n">era5_nz</span><span class="o">.</span><span class="n">latitude</span><span class="o">.</span><span class="n">max</span><span class="p">()]]]},</span>
+
+                         <span class="p">)</span>
+<span class="n">datasource</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[92]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+        Mean NZ ERA5 Surface Winds [era5_nz_10m_wind_demo]
+            Extent: (165.0, -48.0, 180.0, -33.0)
+            Timerange: 2000-01-01 00:00:00 to 2000-01-07 00:00:00
+            3 attributes
+            2 variables
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[84]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now if we check again, we should see our demo dataset that we have just written</span>
+<span class="n">cat</span> <span class="o">=</span> <span class="n">datamesh</span><span class="o">.</span><span class="n">get_catalog</span><span class="p">(</span><span class="s1">&#39;era5&#39;</span><span class="p">)</span>
+<span class="n">cat</span><span class="o">.</span><span class="n">ids</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[84]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;oceanum_wave_nz5km_era5_spec&#39;,
+ &#39;era5_mean_surface_downward_short_wave_radiation_flux&#39;,
+ &#39;oceanum_wave_glob05_era5_v1_grid&#39;,
+ &#39;oceanum_wave_mediterranean_era5_v1_grid&#39;,
+ &#39;oceanum_wave_nz1km_multiscale_era5_param&#39;,
+ &#39;oceanum_wave_nz1km_nz01_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz02_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz03_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz04_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz05_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz06_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz07_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz08_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz09_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz10_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz11_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz12_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz13_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz14_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz15_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz16_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz17_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz18_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz19_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz20_era5_spec&#39;,
+ &#39;oceanum_wave_nz_era5_v1_grid&#39;,
+ &#39;oceanum_wave_ptaranaki_era5_grid&#39;,
+ &#39;oceanum_wave_redsea_era5_grid&#39;,
+ &#39;oceanum_wave_redsea_era5_spec&#39;,
+ &#39;oceanum_wave_teararoa_era5_grid&#39;,
+ &#39;oceanum_wave_trki_era5_v1_grid&#39;,
+ &#39;oceanum_wave_weuro_era5_v1_grid&#39;,
+ &#39;oceanum_wave_weuro_era5_v1_spec&#39;,
+ &#39;oceanum_wave_wtwan_era5_v1_grid&#39;,
+ &#39;era5_nz_10m_wind_demo&#39;,
+ &#39;era5_seaicecon&#39;,
+ &#39;era5_temp2m&#39;,
+ &#39;era5_wind100m&#39;,
+ &#39;era5_wind10m&#39;,
+ &#39;era5_mslp&#39;,
+ &#39;oceanum_wave_ptlan_era5_grid&#39;,
+ &#39;oceanum_wave_trki_era5_v1_spec&#39;,
+ &#39;oceanum_wave_useast_era5_v1_spec&#39;,
+ &#39;gridstas_oceanum_wave_glob05_era5_v1&#39;,
+ &#39;gridstats_oceanum_wave_era5_nz_v1&#39;,
+ &#39;gridstats_oceanum_wave_era5_trki_v1&#39;,
+ &#39;gridstats_oceanum_wave_era5_weuro_v1&#39;,
+ &#39;oceanum_wave_bass_era5_grid&#39;,
+ &#39;oceanum_wave_bass_era5_spec&#39;,
+ &#39;oceanum_wave_glob05_era5_v1_spec&#39;,
+ &#39;oceanum_wave_nz_era5_v1_spec&#39;,
+ &#39;oceanum_wave_mediterranean_era5_v1_spec&#39;,
+ &#39;oceanum_wave_ntas_era5_grid&#39;,
+ &#39;oceanum_wave_ntas_era5_spec&#39;,
+ &#39;oceanum_wave_wtwan_era5_v1_spec&#39;,
+ &#39;era5_precip_rate&#39;,
+ &#39;oceanum_wave_ptlan_era5_spec&#39;,
+ &#39;oceanum_ocean_nz_schism_v1&#39;,
+ &#39;gridstats_oceanum_meteo_era5_trki_1km_v1&#39;,
+ &#39;oceanum_wave_glob05_era5_v1_grid_test&#39;,
+ &#39;our-changing-coast-coast_rp&#39;,
+ &#39;oceanum_ocean_nz_schism_zlevels_v1&#39;,
+ &#39;era5_nz_mean_windpsd_demo&#39;,
+ &#39;oceanum_wave_blacksea_cfsr_v1_grid&#39;,
+ &#39;oceanum_wave_blacksea_cfsr_v1_spec&#39;,
+ &#39;mercator_europe_nwshelf_surface&#39;,
+ &#39;oceanum-jervis_bay_ccam&#39;,
+ &#39;oceanum-jervis_bay_ccam_test&#39;,
+ &#39;cliflo_wind_3445_homogenised_gapfilled&#39;,
+ &#39;gridstats_oceanum_datacube_nz_schism_v1&#39;,
+ &#39;gridstats_oceanum_datacube_nz_swan_v1&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[93]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now if we check again, we can also search on the tags we have written</span>
+<span class="n">cat</span> <span class="o">=</span> <span class="n">datamesh</span><span class="o">.</span><span class="n">get_catalog</span><span class="p">(</span><span class="s1">&#39;demo&#39;</span><span class="p">)</span>
+<span class="n">cat</span><span class="o">.</span><span class="n">ids</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[93]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;era5_nz_10m_wind_demo&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[94]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now we can treat this dataset like any dataset.</span>
+<span class="c1"># For example, lets open the dataset using load_datasource, and extract and plot a single point using standard xarray slicing</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">datamesh</span><span class="o">.</span><span class="n">load_datasource</span><span class="p">(</span><span class="s1">&#39;era5_nz_10m_wind_demo&#39;</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">u10</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">latitude</span><span class="o">=-</span><span class="mi">50</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="mi">170</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[94]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&lt;matplotlib.lines.Line2D at 0x7f3335a19e50&gt;]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_datamesh_storage_demo_17_1.png" src="../_images/notebooks_datamesh_storage_demo_17_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[96]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Finally, lets delete this demo dataset</span>
+<span class="n">datamesh</span><span class="o">.</span><span class="n">delete_datasource</span><span class="p">(</span><span class="n">datasource_id</span><span class="o">=</span><span class="s1">&#39;era5_nz_10m_wind_demo&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[96]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[97]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># And check thats its gone</span>
+<span class="n">cat</span> <span class="o">=</span> <span class="n">datamesh</span><span class="o">.</span><span class="n">get_catalog</span><span class="p">(</span><span class="s1">&#39;demo&#39;</span><span class="p">)</span>
+<span class="n">cat</span><span class="o">.</span><span class="n">ids</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[97]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[]
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../demo.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Demonstration notebooks</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="cmip6datacube_demo.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">CMIP6 datacubes short tutorial</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Install-libraries">Install libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Connect-to-datamesh">Connect to datamesh</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Timeseries-data">Timeseries data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Gridded-data">Gridded data</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/notebooks/datamesh_storage_demo.ipynb.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Data Group.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
