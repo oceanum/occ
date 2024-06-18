@@ -134,6 +134,13 @@
 <nav class="navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quick start
+  </a>
+</li>
+
+
 <li class="nav-item pst-header-nav-item current active">
   <a class="nav-link nav-internal" href="../demo.html">
     Demonstration notebooks
@@ -240,6 +247,13 @@ document.write(`
 <nav class="navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quick start
+  </a>
+</li>
+
+
 <li class="nav-item pst-header-nav-item current active">
   <a class="nav-link nav-internal" href="../demo.html">
     Demonstration notebooks
@@ -299,11 +313,13 @@ document.write(`
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="multiscale_tidegrid_demo.html">Example query 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multiscale_tidegrid_demo.html">Oceanum 400m Tidal Data</a></li>
 
 
 
 
+
+<li class="toctree-l1"><a class="reference internal" href="linz_dem_example.html">LINZ Digital Elevation Models</a></li>
 </ul>
 </div>
 </nav></div>
@@ -381,7 +397,7 @@ document.write(`
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
@@ -405,7 +421,7 @@ document.write(`
 <h2>Connect to datamesh<a class="headerlink" href="#Connect-to-datamesh" title="Link to this heading">#</a></h2>
 <p>Define your datamesh token in evironment variables as DATAMESH_TOKEN or insert into argument below.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">oceanum.datamesh</span> <span class="kn">import</span> <span class="n">Connector</span>
@@ -414,17 +430,15 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<section id="Timeseries-data">
-<h3>Timeseries data<a class="headerlink" href="#Timeseries-data" title="Link to this heading">#</a></h3>
-<p>TODO</p>
-</section>
-<section id="Gridded-data">
-<h3>Gridded data<a class="headerlink" href="#Gridded-data" title="Link to this heading">#</a></h3>
+<section id="Extract-gridded-data">
+<h3>Extract gridded data<a class="headerlink" href="#Extract-gridded-data" title="Link to this heading">#</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We begin by extracting some data. Of course this can also be done using data that you have already.</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We begin by extracting some data. This will serve to demonstrate a simple extraction,</span>
+<span class="c1"># but we will also then use this extracted data as a demostration of how to write data</span>
+<span class="c1"># to datamesh. Of course this can also be done using data that you have already.</span>
 <span class="c1"># Here we are extracting 1year of era5 surface winds over new zealand</span>
 <span class="c1"># We are using query here, just because its faster for remote access of large datasets as the slicing is done on the server,</span>
 <span class="c1"># however you could also use load_datasource to get a lazy view of the full 40+y global dataset and slice as required</span>
@@ -453,7 +467,7 @@ document.write(`
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -820,31 +834,33 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
-</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 6MB
 Dimensions:    (latitude: 61, longitude: 61, time: 145)
 Coordinates:
-  * latitude   (latitude) float32 -33.0 -33.25 -33.5 ... -47.5 -47.75 -48.0
-  * longitude  (longitude) float32 165.0 165.2 165.5 165.8 ... 179.5 179.8 180.0
-  * time       (time) datetime64[ns] 2000-01-01 ... 2000-01-07
+  * latitude   (latitude) float32 244B -33.0 -33.25 -33.5 ... -47.5 -47.75 -48.0
+  * longitude  (longitude) float32 244B 165.0 165.2 165.5 ... 179.5 179.8 180.0
+  * time       (time) datetime64[ns] 1kB 2000-01-01 ... 2000-01-07
 Data variables:
-    u10        (time, latitude, longitude) float32 6.509 6.28 ... 4.814 4.804
-    v10        (time, latitude, longitude) float32 -6.899 -6.789 ... 2.422 2.587
+    u10        (time, latitude, longitude) float32 2MB 6.509 6.271 ... 4.804
+    v10        (time, latitude, longitude) float32 2MB -6.899 -6.789 ... 2.587
+    wspd       (time, latitude, longitude) float32 2MB 9.485 9.242 ... 5.456
 Attributes:
-    Conventions:   CF-1.6
-    history:       2024-01-06 05:08:35 GMT by grib_to_netcdf-2.25.1: /opt/ecm...
-    _coordinates:  {&quot;t&quot;:&quot;time&quot;,&quot;x&quot;:&quot;longitude&quot;,&quot;y&quot;:&quot;latitude&quot;}</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-6b824b77-0d60-4c82-b765-03ced430e3b7' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-6b824b77-0d60-4c82-b765-03ced430e3b7' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>latitude</span>: 61</li><li><span class='xr-has-index'>longitude</span>: 61</li><li><span class='xr-has-index'>time</span>: 145</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-a43ae135-7c00-4a6d-877b-684f4ba33d90' class='xr-section-summary-in' type='checkbox'  checked><label for='section-a43ae135-7c00-4a6d-877b-684f4ba33d90' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-33.0 -33.25 -33.5 ... -47.75 -48.0</div><input id='attrs-1b90b8dc-9eb5-4793-9056-d0798ad63d80' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-1b90b8dc-9eb5-4793-9056-d0798ad63d80' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-21b5a308-6abc-4973-a5b6-3c864976b1dc' class='xr-var-data-in' type='checkbox'><label for='data-21b5a308-6abc-4973-a5b6-3c864976b1dc' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-33.  , -33.25, -33.5 , -33.75, -34.  , -34.25, -34.5 , -34.75, -35.  ,
+    Conventions:    CF-1.6
+    history:        2024-06-16 09:49:17 GMT by grib_to_netcdf-2.28.1: /opt/ec...
+    _coordinates:   {&quot;t&quot;:&quot;time&quot;,&quot;x&quot;:&quot;longitude&quot;,&quot;y&quot;:&quot;latitude&quot;}
+    _request_size:  6476188</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-e62a34c6-f7df-4bd2-9ea4-ed913b89eb35' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-e62a34c6-f7df-4bd2-9ea4-ed913b89eb35' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>latitude</span>: 61</li><li><span class='xr-has-index'>longitude</span>: 61</li><li><span class='xr-has-index'>time</span>: 145</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-c29e91a5-bfc7-457a-9220-9731830d71cc' class='xr-section-summary-in' type='checkbox'  checked><label for='section-c29e91a5-bfc7-457a-9220-9731830d71cc' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-33.0 -33.25 -33.5 ... -47.75 -48.0</div><input id='attrs-819b6460-9e39-4065-aace-7772ebe5c17e' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-819b6460-9e39-4065-aace-7772ebe5c17e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d6533c96-3d5f-4d19-b4b6-69df5a0dce84' class='xr-var-data-in' type='checkbox'><label for='data-d6533c96-3d5f-4d19-b4b6-69df5a0dce84' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-33.  , -33.25, -33.5 , -33.75, -34.  , -34.25, -34.5 , -34.75, -35.  ,
        -35.25, -35.5 , -35.75, -36.  , -36.25, -36.5 , -36.75, -37.  , -37.25,
        -37.5 , -37.75, -38.  , -38.25, -38.5 , -38.75, -39.  , -39.25, -39.5 ,
        -39.75, -40.  , -40.25, -40.5 , -40.75, -41.  , -41.25, -41.5 , -41.75,
        -42.  , -42.25, -42.5 , -42.75, -43.  , -43.25, -43.5 , -43.75, -44.  ,
        -44.25, -44.5 , -44.75, -45.  , -45.25, -45.5 , -45.75, -46.  , -46.25,
-       -46.5 , -46.75, -47.  , -47.25, -47.5 , -47.75, -48.  ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>165.0 165.2 165.5 ... 179.8 180.0</div><input id='attrs-7ae3f560-ec44-4815-a7de-3114342ea4c6' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-7ae3f560-ec44-4815-a7de-3114342ea4c6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-29508001-2c3f-4b18-88f6-0a3245ac01c2' class='xr-var-data-in' type='checkbox'><label for='data-29508001-2c3f-4b18-88f6-0a3245ac01c2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([165.  , 165.25, 165.5 , 165.75, 166.  , 166.25, 166.5 , 166.75, 167.  ,
+       -46.5 , -46.75, -47.  , -47.25, -47.5 , -47.75, -48.  ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>165.0 165.2 165.5 ... 179.8 180.0</div><input id='attrs-2944e706-ec35-47bc-94da-49a690d12ca8' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-2944e706-ec35-47bc-94da-49a690d12ca8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ed2b0f8b-f8f2-472d-a647-7b8702e77aca' class='xr-var-data-in' type='checkbox'><label for='data-ed2b0f8b-f8f2-472d-a647-7b8702e77aca' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([165.  , 165.25, 165.5 , 165.75, 166.  , 166.25, 166.5 , 166.75, 167.  ,
        167.25, 167.5 , 167.75, 168.  , 168.25, 168.5 , 168.75, 169.  , 169.25,
        169.5 , 169.75, 170.  , 170.25, 170.5 , 170.75, 171.  , 171.25, 171.5 ,
        171.75, 172.  , 172.25, 172.5 , 172.75, 173.  , 173.25, 173.5 , 173.75,
        174.  , 174.25, 174.5 , 174.75, 175.  , 175.25, 175.5 , 175.75, 176.  ,
        176.25, 176.5 , 176.75, 177.  , 177.25, 177.5 , 177.75, 178.  , 178.25,
-       178.5 , 178.75, 179.  , 179.25, 179.5 , 179.75, 180.  ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2000-01-01 ... 2000-01-07</div><input id='attrs-ec931086-b6dd-4289-af71-9f36c0be15b5' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-ec931086-b6dd-4289-af71-9f36c0be15b5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-61c8abae-5d5c-45e7-b364-38ce08e02f97' class='xr-var-data-in' type='checkbox'><label for='data-61c8abae-5d5c-45e7-b364-38ce08e02f97' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;2000-01-01T00:00:00.000000000&#x27;, &#x27;2000-01-01T01:00:00.000000000&#x27;,
+       178.5 , 178.75, 179.  , 179.25, 179.5 , 179.75, 180.  ], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2000-01-01 ... 2000-01-07</div><input id='attrs-abcf9f9a-bce2-4a6c-b967-11693deb9ccd' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-abcf9f9a-bce2-4a6c-b967-11693deb9ccd' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3769766b-87c7-4b31-9e4f-488ed855aed1' class='xr-var-data-in' type='checkbox'><label for='data-3769766b-87c7-4b31-9e4f-488ed855aed1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;2000-01-01T00:00:00.000000000&#x27;, &#x27;2000-01-01T01:00:00.000000000&#x27;,
        &#x27;2000-01-01T02:00:00.000000000&#x27;, &#x27;2000-01-01T03:00:00.000000000&#x27;,
        &#x27;2000-01-01T04:00:00.000000000&#x27;, &#x27;2000-01-01T05:00:00.000000000&#x27;,
        &#x27;2000-01-01T06:00:00.000000000&#x27;, &#x27;2000-01-01T07:00:00.000000000&#x27;,
@@ -916,7 +932,7 @@ Attributes:
        &#x27;2000-01-06T18:00:00.000000000&#x27;, &#x27;2000-01-06T19:00:00.000000000&#x27;,
        &#x27;2000-01-06T20:00:00.000000000&#x27;, &#x27;2000-01-06T21:00:00.000000000&#x27;,
        &#x27;2000-01-06T22:00:00.000000000&#x27;, &#x27;2000-01-06T23:00:00.000000000&#x27;,
-       &#x27;2000-01-07T00:00:00.000000000&#x27;], dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-8ac7ff87-3a0a-4cd8-8553-0a62ead5fca0' class='xr-section-summary-in' type='checkbox'  checked><label for='section-8ac7ff87-3a0a-4cd8-8553-0a62ead5fca0' class='xr-section-summary' >Data variables: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>u10</span></div><div class='xr-var-dims'>(time, latitude, longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>6.509 6.28 6.042 ... 4.814 4.804</div><input id='attrs-5a4fe043-d146-416d-8712-ee9e74fd59ed' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-5a4fe043-d146-416d-8712-ee9e74fd59ed' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-469533e8-86ed-4d5c-9adb-9e830ef692ea' class='xr-var-data-in' type='checkbox'><label for='data-469533e8-86ed-4d5c-9adb-9e830ef692ea' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>10 metre U wind component</dd><dt><span>units :</span></dt><dd>m s**-1</dd><dt><span>valid_max :</span></dt><dd>300.0</dd><dt><span>valid_min :</span></dt><dd>-300.0</dd></dl></div><div class='xr-var-data'><pre>array([[[ 6.508995  ,  6.279881  ,  6.041602  , ..., -1.0334448 ,
+       &#x27;2000-01-07T00:00:00.000000000&#x27;], dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c1324df3-869f-4040-95be-d228748eae1c' class='xr-section-summary-in' type='checkbox'  checked><label for='section-c1324df3-869f-4040-95be-d228748eae1c' class='xr-section-summary' >Data variables: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>u10</span></div><div class='xr-var-dims'>(time, latitude, longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>6.509 6.271 6.042 ... 4.814 4.804</div><input id='attrs-94154f37-a7e5-4df0-aec9-1582ec89eb83' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-94154f37-a7e5-4df0-aec9-1582ec89eb83' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ad802e62-b723-442c-821e-9020d89a0c41' class='xr-var-data-in' type='checkbox'><label for='data-ad802e62-b723-442c-821e-9020d89a0c41' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>10 metre U wind component</dd><dt><span>units :</span></dt><dd>m s**-1</dd><dt><span>valid_max :</span></dt><dd>300.0</dd><dt><span>valid_min :</span></dt><dd>-300.0</dd></dl></div><div class='xr-var-data'><pre>array([[[ 6.508995  ,  6.270716  ,  6.041602  , ..., -1.0334448 ,
          -1.2075715 , -1.3358755 ],
         [ 6.51816   ,  6.1424127 ,  5.8674755 , ..., -0.83182424,
          -0.96929276, -1.0334448 ],
@@ -925,10 +941,10 @@ Attributes:
         ...,
         [-2.2523324 , -2.600586  , -2.9488397 , ...,  0.8361273 ,
           1.0377477 ,  1.3218493 ],
-        [-1.876585  , -2.2156742 , -2.554763  , ...,  1.1660517 ,
+        [-1.8674204 , -2.2156742 , -2.554763  , ...,  1.1660517 ,
           1.3676722 ,  1.5967865 ],
         [-1.2442298 , -1.6932937 , -2.0415473 , ...,  1.5417991 ,
-          1.7159258 ,  1.9175464 ]],
+          1.7159258 ,  1.926711  ]],
 
        [[ 7.0497046 ,  6.61897   ,  6.215729  , ..., -0.31860837,
          -0.58438087, -0.8593179 ],
@@ -956,7 +972,7 @@ Attributes:
         [ 7.535427  ,  7.3613    ,  7.2238317 , ...,  4.7677274 ,
           4.731069  ,  4.71274   ],
         [ 6.215729  ,  6.765603  ,  7.1780086 , ...,  4.8502083 ,
-          4.81355   ,  4.8043857 ]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>v10</span></div><div class='xr-var-dims'>(time, latitude, longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-6.899 -6.789 ... 2.422 2.587</div><input id='attrs-1e1d4ade-12ef-42f0-abfa-b03975baddcf' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1e1d4ade-12ef-42f0-abfa-b03975baddcf' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ce106da0-8fab-45ee-8885-c323e77359a9' class='xr-var-data-in' type='checkbox'><label for='data-ce106da0-8fab-45ee-8885-c323e77359a9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>10 metre V wind component</dd><dt><span>units :</span></dt><dd>m s**-1</dd><dt><span>valid_max :</span></dt><dd>300.0</dd><dt><span>valid_min :</span></dt><dd>-300.0</dd></dl></div><div class='xr-var-data'><pre>array([[[-6.89876842e+00, -6.78879356e+00, -6.59633780e+00, ...,
+          4.81355   ,  4.8043857 ]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>v10</span></div><div class='xr-var-dims'>(time, latitude, longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-6.899 -6.789 ... 2.422 2.587</div><input id='attrs-4cd9226a-c87d-4c22-bebb-5c665cd4428c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4cd9226a-c87d-4c22-bebb-5c665cd4428c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0387be20-2e06-45a0-bed1-3a03a524be74' class='xr-var-data-in' type='checkbox'><label for='data-0387be20-2e06-45a0-bed1-3a03a524be74' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>10 metre V wind component</dd><dt><span>units :</span></dt><dd>m s**-1</dd><dt><span>valid_max :</span></dt><dd>300.0</dd><dt><span>valid_min :</span></dt><dd>-300.0</dd></dl></div><div class='xr-var-data'><pre>array([[[-6.89876842e+00, -6.78879356e+00, -6.59633780e+00, ...,
          -7.07289553e+00, -6.81628752e+00, -6.67881918e+00],
         [-7.27451611e+00, -7.14621210e+00, -6.95375586e+00, ...,
          -6.99957895e+00, -6.76130009e+00, -6.61466694e+00],
@@ -996,21 +1012,61 @@ Attributes:
           2.32078743e+00,  2.49491405e+00,  2.65071177e+00],
         [ 2.18331885e+00,  1.30352020e+00,  3.22911412e-01, ...,
           2.22914171e+00,  2.42159772e+00,  2.58655977e+00]]],
-      dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-d4a4ecc3-ec70-485f-a4b9-816f2f7318a0' class='xr-section-summary-in' type='checkbox'  ><label for='section-d4a4ecc3-ec70-485f-a4b9-816f2f7318a0' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>latitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-f03c01d7-4fad-49f7-9aeb-62cf591b6a61' class='xr-index-data-in' type='checkbox'/><label for='index-f03c01d7-4fad-49f7-9aeb-62cf591b6a61' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([ -33.0, -33.25,  -33.5, -33.75,  -34.0, -34.25,  -34.5, -34.75,  -35.0,
+      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>wspd</span></div><div class='xr-var-dims'>(time, latitude, longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>9.485 9.242 8.945 ... 5.388 5.456</div><input id='attrs-cfaa724a-4377-4028-848f-4844e4b77e17' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-cfaa724a-4377-4028-848f-4844e4b77e17' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-09c5db3b-b29b-4502-a1a3-d12f53470683' class='xr-var-data-in' type='checkbox'><label for='data-09c5db3b-b29b-4502-a1a3-d12f53470683' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>10 metre wind speed</dd><dt><span>standard_name :</span></dt><dd>wind_speed</dd><dt><span>units :</span></dt><dd>m s-1</dd><dt><span>height :</span></dt><dd>10</dd></dl></div><div class='xr-var-data'><pre>array([[[ 9.484726 ,  9.241732 ,  8.944978 , ...,  7.147997 ,
+          6.9224277,  6.8111076],
+        [ 9.767548 ,  9.423246 ,  9.098461 , ...,  7.0488324,
+          6.8304253,  6.6949105],
+        [ 9.796534 ,  9.474867 ,  9.214342 , ...,  7.15901  ,
+          7.000238 ,  6.8411665],
+        ...,
+        [ 8.516825 ,  8.615472 ,  8.606262 , ...,  4.2867193,
+          4.259419 ,  4.2850585],
+        [ 7.914682 ,  7.995202 ,  8.026194 , ...,  4.398423 ,
+          4.3863964,  4.4203873],
+        [ 7.014307 ,  7.170038 ,  7.260174 , ...,  4.5298343,
+          4.6090274,  4.666528 ]],
+
+       [[10.005692 ,  9.666874 ,  9.313186 , ...,  6.915277 ,
+          6.5674014,  6.2887416],
+        [10.104295 ,  9.76861  ,  9.443572 , ...,  6.9205256,
+          6.5487328,  6.1468964],
+        [10.073744 ,  9.752367 ,  9.46693  , ...,  7.002166 ,
+          6.6960106,  6.278085 ],
+...
+        [ 6.9323077,  6.6948977,  6.594647 , ...,  5.2040477,
+          5.2751403,  5.3644524],
+        [ 7.587854 ,  7.3473125,  7.239978 , ...,  5.241517 ,
+          5.3100524,  5.400118 ],
+        [ 6.978176 ,  7.563526 ,  7.69573  , ...,  5.2698317,
+          5.3434563,  5.431035 ]],
+
+       [[ 8.737783 , 10.395282 , 11.622113 , ...,  4.290123 ,
+          4.2103043,  4.168258 ],
+        [ 8.601955 , 10.070871 , 11.269158 , ...,  4.121905 ,
+          4.0763454,  4.053569 ],
+        [ 8.114618 ,  9.532329 , 10.781273 , ...,  3.842983 ,
+          3.820219 ,  3.782502 ],
+        ...,
+        [ 7.15418  ,  7.004583 ,  6.845467 , ...,  5.2614098,
+          5.3000317,  5.358227 ],
+        [ 7.5446825,  7.382334 ,  7.2769504, ...,  5.3025727,
+          5.3486085,  5.40705  ],
+        [ 6.5880322,  6.890033 ,  7.185268 , ...,  5.3379393,
+          5.3883576,  5.45641  ]]], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-47f6b336-786c-4d80-9373-95957e52c701' class='xr-section-summary-in' type='checkbox'  ><label for='section-47f6b336-786c-4d80-9373-95957e52c701' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>latitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-fe2abe1b-29df-4198-822f-527b21f706db' class='xr-index-data-in' type='checkbox'/><label for='index-fe2abe1b-29df-4198-822f-527b21f706db' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([ -33.0, -33.25,  -33.5, -33.75,  -34.0, -34.25,  -34.5, -34.75,  -35.0,
        -35.25,  -35.5, -35.75,  -36.0, -36.25,  -36.5, -36.75,  -37.0, -37.25,
         -37.5, -37.75,  -38.0, -38.25,  -38.5, -38.75,  -39.0, -39.25,  -39.5,
        -39.75,  -40.0, -40.25,  -40.5, -40.75,  -41.0, -41.25,  -41.5, -41.75,
         -42.0, -42.25,  -42.5, -42.75,  -43.0, -43.25,  -43.5, -43.75,  -44.0,
        -44.25,  -44.5, -44.75,  -45.0, -45.25,  -45.5, -45.75,  -46.0, -46.25,
         -46.5, -46.75,  -47.0, -47.25,  -47.5, -47.75,  -48.0],
-      dtype=&#x27;float32&#x27;, name=&#x27;latitude&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>longitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-0ae45509-6527-451b-997b-5da5303a8db1' class='xr-index-data-in' type='checkbox'/><label for='index-0ae45509-6527-451b-997b-5da5303a8db1' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([ 165.0, 165.25,  165.5, 165.75,  166.0, 166.25,  166.5, 166.75,  167.0,
+      dtype=&#x27;float32&#x27;, name=&#x27;latitude&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>longitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-dc898397-e280-43b4-b15a-396156aadc7b' class='xr-index-data-in' type='checkbox'/><label for='index-dc898397-e280-43b4-b15a-396156aadc7b' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([ 165.0, 165.25,  165.5, 165.75,  166.0, 166.25,  166.5, 166.75,  167.0,
        167.25,  167.5, 167.75,  168.0, 168.25,  168.5, 168.75,  169.0, 169.25,
         169.5, 169.75,  170.0, 170.25,  170.5, 170.75,  171.0, 171.25,  171.5,
        171.75,  172.0, 172.25,  172.5, 172.75,  173.0, 173.25,  173.5, 173.75,
         174.0, 174.25,  174.5, 174.75,  175.0, 175.25,  175.5, 175.75,  176.0,
        176.25,  176.5, 176.75,  177.0, 177.25,  177.5, 177.75,  178.0, 178.25,
         178.5, 178.75,  179.0, 179.25,  179.5, 179.75,  180.0],
-      dtype=&#x27;float32&#x27;, name=&#x27;longitude&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-8e981123-5b85-4b6d-b2a2-3c7a707fcbb0' class='xr-index-data-in' type='checkbox'/><label for='index-8e981123-5b85-4b6d-b2a2-3c7a707fcbb0' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2000-01-01 00:00:00&#x27;, &#x27;2000-01-01 01:00:00&#x27;,
+      dtype=&#x27;float32&#x27;, name=&#x27;longitude&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-60e54792-3922-4905-897f-99e5e809c17f' class='xr-index-data-in' type='checkbox'/><label for='index-60e54792-3922-4905-897f-99e5e809c17f' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2000-01-01 00:00:00&#x27;, &#x27;2000-01-01 01:00:00&#x27;,
                &#x27;2000-01-01 02:00:00&#x27;, &#x27;2000-01-01 03:00:00&#x27;,
                &#x27;2000-01-01 04:00:00&#x27;, &#x27;2000-01-01 05:00:00&#x27;,
                &#x27;2000-01-01 06:00:00&#x27;, &#x27;2000-01-01 07:00:00&#x27;,
@@ -1021,13 +1077,14 @@ Attributes:
                &#x27;2000-01-06 19:00:00&#x27;, &#x27;2000-01-06 20:00:00&#x27;,
                &#x27;2000-01-06 21:00:00&#x27;, &#x27;2000-01-06 22:00:00&#x27;,
                &#x27;2000-01-06 23:00:00&#x27;, &#x27;2000-01-07 00:00:00&#x27;],
-              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=145, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-e695a5c1-6c7a-40a3-80c5-7ca8923e32ca' class='xr-section-summary-in' type='checkbox'  checked><label for='section-e695a5c1-6c7a-40a3-80c5-7ca8923e32ca' class='xr-section-summary' >Attributes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.6</dd><dt><span>history :</span></dt><dd>2024-01-06 05:08:35 GMT by grib_to_netcdf-2.25.1: /opt/ecmwf/mars-client/bin/grib_to_netcdf.bin -S param -o /cache/data6/adaptor.mars.internal-1704517693.3341398-18522-9-a9972c78-6b74-4ffd-b749-32d7cf268fa5.nc /cache/tmp/a9972c78-6b74-4ffd-b749-32d7cf268fa5-adaptor.mars.internal-1704517660.7330503-18522-13-tmp.grib</dd><dt><span>_coordinates :</span></dt><dd>{&quot;t&quot;:&quot;time&quot;,&quot;x&quot;:&quot;longitude&quot;,&quot;y&quot;:&quot;latitude&quot;}</dd></dl></div></li></ul></div></div></div>
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=145, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-f4a14df9-7f5f-480f-ba08-84b8cf80a360' class='xr-section-summary-in' type='checkbox'  checked><label for='section-f4a14df9-7f5f-480f-ba08-84b8cf80a360' class='xr-section-summary' >Attributes: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.6</dd><dt><span>history :</span></dt><dd>2024-06-16 09:49:17 GMT by grib_to_netcdf-2.28.1: /opt/ecmwf/mars-client/bin/grib_to_netcdf -S param -o /cache/data7/adaptor.mars.internal-1718531338.0639713-11924-13-c89f9a75-fea1-4ec0-9199-790c6d9210f7.nc /cache/tmp/c89f9a75-fea1-4ec0-9199-790c6d9210f7-adaptor.mars.internal-1718531280.9584725-11924-9-tmp.grib</dd><dt><span>_coordinates :</span></dt><dd>{&quot;t&quot;:&quot;time&quot;,&quot;x&quot;:&quot;longitude&quot;,&quot;y&quot;:&quot;latitude&quot;}</dd><dt><span>_request_size :</span></dt><dd>6476188</dd></dl></div></li></ul></div></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lets plot a single windspeed timestep to check the data</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lets plot a single wind speed timestep to check the data</span>
+
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=</span><span class="mi">180</span><span class="p">))</span>
 <span class="p">((</span><span class="n">era5_nz</span><span class="o">.</span><span class="n">u10</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">era5_nz</span><span class="o">.</span><span class="n">v10</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span><span class="mi">2</span> <span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
@@ -1035,12 +1092,42 @@ Attributes:
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;cartopy.mpl.feature_artist.FeatureArtist at 0x7f333726bb50&gt;
+&lt;cartopy.mpl.feature_artist.FeatureArtist at 0x7fe3193c1610&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_datamesh_storage_demo_8_1.png" src="../_images/notebooks_datamesh_storage_demo_8_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can then use this data as we would use a local dataset. For example, lets take the mean over time</span>
+<span class="c1"># and plot the results. Note that this is not a large dataset, so this is a relatively trivial example,</span>
+<span class="c1"># but similar analysis can be undertaken with very large datasets due to dask support).</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=</span><span class="mi">180</span><span class="p">))</span>
+<span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">era5_nz</span><span class="o">.</span><span class="n">u10</span> <span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">era5_nz</span><span class="o">.</span><span class="n">v10</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;cartopy.mpl.feature_artist.FeatureArtist at 0x7fe30cf5f650&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1050,105 +1137,230 @@ Attributes:
 <img alt="../_images/notebooks_datamesh_storage_demo_9_1.png" src="../_images/notebooks_datamesh_storage_demo_9_1.png" />
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lets do some simple calculation. In this case, lets take the maean over time and plot the results</span>
-</pre></div>
-</div>
-</div>
+</section>
+<section id="Writing-data">
+<h3>Writing data<a class="headerlink" href="#Writing-data" title="Link to this heading">#</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lets check our current era5 datasets</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lets now look at writing this extracted data back to datamesh as a new dataset.</span>
+<span class="c1"># Before we do that, lets check our current era5 datasets</span>
 <span class="n">cat</span> <span class="o">=</span> <span class="n">datamesh</span><span class="o">.</span><span class="n">get_catalog</span><span class="p">(</span><span class="s1">&#39;era5&#39;</span><span class="p">)</span>
 <span class="n">cat</span><span class="o">.</span><span class="n">ids</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&#39;oceanum_wave_nz5km_era5_spec&#39;,
- &#39;era5_mean_surface_downward_short_wave_radiation_flux&#39;,
+[&#39;oceanum_wave_bass_5km_era5_grid&#39;,
+ &#39;oceanum_wave_ptlan_1km_era5_spec&#39;,
+ &#39;oceanum_wave_ense_era5_grid&#39;,
+ &#39;oceanum_wave_swna_era5_grid&#39;,
+ &#39;oceanum_wave_ense_era5_spec&#39;,
+ &#39;oceanum_wave_cali_era5_grid&#39;,
+ &#39;oceanum_wave_swna_era5_spec&#39;,
+ &#39;oceanum_wave_cali_era5_spec&#39;,
+ &#39;oceanum_ocean_otago_schism_zlevels&#39;,
+ &#39;oceanum_ocean_bass_schism_v1&#39;,
+ &#39;oceanum_wave_ebass_1km_era5_spec&#39;,
+ &#39;oceanum_wave_bass_5km_era5_spec&#39;,
+ &#39;oceanum_wave_ptlan_1km_era5_grid&#39;,
+ &#39;gridstas_oceanum_wave_glob05_era5_v1&#39;,
+ &#39;gridstats_oceanum_wave_era5_trki_v1&#39;,
+ &#39;oceanum_ocean_auckland_schism_v1&#39;,
+ &#39;gridstats_oceanum_wave_era5_nz_v1&#39;,
+ &#39;oceanum_wave_ebass_1km_era5_grid&#39;,
+ &#39;gridstats_oceanum_wave_era5_weuro_v1&#39;,
+ &#39;era5_wind100m&#39;,
+ &#39;era5_wind10m&#39;,
  &#39;oceanum_wave_glob05_era5_v1_grid&#39;,
+ &#39;era5_temp2m&#39;,
  &#39;oceanum_wave_mediterranean_era5_v1_grid&#39;,
+ &#39;oceanum_wave_redsea_era5_grid&#39;,
+ &#39;oceanum_wave_weuro_era5_v1_grid&#39;,
+ &#39;stats_era5_wind100m&#39;,
+ &#39;era5_seaicecon&#39;,
+ &#39;oceanum_wave_redsea_era5_spec&#39;,
+ &#39;oceanum_wave_nz_era5_v1_grid&#39;,
+ &#39;oceanum_wave_trki_era5_v1_grid&#39;,
+ &#39;oceanum_wave_useast_era5_v1_spec&#39;,
+ &#39;era5_mean_surface_downward_short_wave_radiation_flux&#39;,
  &#39;oceanum_wave_nz1km_multiscale_era5_param&#39;,
+ &#39;oceanum_wave_ptaranaki_era5_grid&#39;,
+ &#39;era5_precip_rate&#39;,
+ &#39;oceanum_wave_glob05_era5_v1_spec&#39;,
  &#39;oceanum_wave_nz1km_nz01_era5_spec&#39;,
- &#39;oceanum_wave_nz1km_nz02_era5_spec&#39;,
- &#39;oceanum_wave_nz1km_nz03_era5_spec&#39;,
  &#39;oceanum_wave_nz1km_nz04_era5_spec&#39;,
  &#39;oceanum_wave_nz1km_nz05_era5_spec&#39;,
+ &#39;oceanum_wave_wtwan_era5_v1_grid&#39;,
+ &#39;oceanum_wave_nz1km_nz10_era5_spec&#39;,
+ &#39;oceanum_wave_teararoa_era5_grid&#39;,
+ &#39;oceanum_wave_nz1km_nz11_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz12_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz14_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz16_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz17_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz19_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz20_era5_spec&#39;,
+ &#39;oceanum_wave_nz5km_era5_spec&#39;,
+ &#39;oceanum_wave_wtwan_era5_v1_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz02_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz03_era5_spec&#39;,
  &#39;oceanum_wave_nz1km_nz06_era5_spec&#39;,
  &#39;oceanum_wave_nz1km_nz07_era5_spec&#39;,
  &#39;oceanum_wave_nz1km_nz08_era5_spec&#39;,
  &#39;oceanum_wave_nz1km_nz09_era5_spec&#39;,
- &#39;oceanum_wave_nz1km_nz10_era5_spec&#39;,
- &#39;oceanum_wave_nz1km_nz11_era5_spec&#39;,
- &#39;oceanum_wave_nz1km_nz12_era5_spec&#39;,
  &#39;oceanum_wave_nz1km_nz13_era5_spec&#39;,
- &#39;oceanum_wave_nz1km_nz14_era5_spec&#39;,
  &#39;oceanum_wave_nz1km_nz15_era5_spec&#39;,
- &#39;oceanum_wave_nz1km_nz16_era5_spec&#39;,
- &#39;oceanum_wave_nz1km_nz17_era5_spec&#39;,
  &#39;oceanum_wave_nz1km_nz18_era5_spec&#39;,
- &#39;oceanum_wave_nz1km_nz19_era5_spec&#39;,
- &#39;oceanum_wave_nz1km_nz20_era5_spec&#39;,
- &#39;oceanum_wave_nz_era5_v1_grid&#39;,
- &#39;oceanum_wave_ptaranaki_era5_grid&#39;,
- &#39;oceanum_wave_redsea_era5_grid&#39;,
- &#39;oceanum_wave_redsea_era5_spec&#39;,
- &#39;oceanum_wave_teararoa_era5_grid&#39;,
- &#39;oceanum_wave_trki_era5_v1_grid&#39;,
- &#39;oceanum_wave_weuro_era5_v1_grid&#39;,
- &#39;oceanum_wave_weuro_era5_v1_spec&#39;,
- &#39;oceanum_wave_wtwan_era5_v1_grid&#39;,
- &#39;era5_nz_10m_wind_demo&#39;,
- &#39;era5_seaicecon&#39;,
- &#39;era5_temp2m&#39;,
- &#39;era5_wind100m&#39;,
- &#39;era5_wind10m&#39;,
- &#39;era5_mslp&#39;,
- &#39;oceanum_wave_ptlan_era5_grid&#39;,
- &#39;oceanum_wave_trki_era5_v1_spec&#39;,
- &#39;oceanum_wave_useast_era5_v1_spec&#39;,
- &#39;gridstas_oceanum_wave_glob05_era5_v1&#39;,
- &#39;gridstats_oceanum_wave_era5_nz_v1&#39;,
- &#39;gridstats_oceanum_wave_era5_trki_v1&#39;,
- &#39;gridstats_oceanum_wave_era5_weuro_v1&#39;,
- &#39;oceanum_wave_bass_era5_grid&#39;,
- &#39;oceanum_wave_bass_era5_spec&#39;,
- &#39;oceanum_wave_glob05_era5_v1_spec&#39;,
+ &#39;stats_era5_wind10m&#39;,
  &#39;oceanum_wave_nz_era5_v1_spec&#39;,
+ &#39;oceanum_wave_trki_era5_v1_spec&#39;,
+ &#39;era5_schism_nz&#39;,
  &#39;oceanum_wave_mediterranean_era5_v1_spec&#39;,
- &#39;oceanum_wave_ntas_era5_grid&#39;,
- &#39;oceanum_wave_ntas_era5_spec&#39;,
- &#39;oceanum_wave_wtwan_era5_v1_spec&#39;,
- &#39;era5_precip_rate&#39;,
- &#39;oceanum_wave_ptlan_era5_spec&#39;,
- &#39;oceanum_ocean_nz_schism_v1&#39;,
+ &#39;era5_mslp&#39;,
+ &#39;oceanum_wave_weuro_era5_v1_spec&#39;,
  &#39;gridstats_oceanum_meteo_era5_trki_1km_v1&#39;,
  &#39;oceanum_wave_glob05_era5_v1_grid_test&#39;,
- &#39;our-changing-coast-coast_rp&#39;,
- &#39;oceanum_ocean_nz_schism_zlevels_v1&#39;,
- &#39;era5_nz_mean_windpsd_demo&#39;,
- &#39;oceanum_wave_blacksea_cfsr_v1_grid&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_my_0-25deg_p1d-m-geoseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_my_0-25deg_p1m-m-geoseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_my_0-25deg_p1m-m-timeseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_nrt_0-25deg_p1m-m-geoseries&#39;,
+ &#39;cmems_obs-wind_glo_phy_my_l4_0-25deg_pt1h-geoseries&#39;,
+ &#39;cmems_obs-wind_glo_phy_my_l4_0-125deg_pt1h-geoseries&#39;,
+ &#39;cmems_obs-wind_glo_phy_my_l4_0-125deg_pt1h-timeseries&#39;,
+ &#39;cmems_obs-wind_glo_phy_my_l4_0-25deg_pt1h-timeseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_my_0-25deg_pt1h-i-geoseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_my_0-25deg_pt1h-i-timeseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_nrt_0-25deg_p1d-m-geoseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_nrt_0-25deg_p1d-m-timeseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_nrt_0-25deg_pt1h-i-geoseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_nrt_0-25deg_p1m-m-timeseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_nrt_0-25deg_pt1h-i-timeseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_my_0-25deg_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-sal_my_2-5km_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-sal_my_2-5km_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-ssh_my_2-5km_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-ssh_my_2-5km_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-ssh_myint_2-5km_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-tem_my_2-5km_p1y-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-tem_my_2-5km_p1y-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-bottomt_my_7km-2d_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-bottomt_myint_7km-2d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-s_my_7km-3d_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-uv_myint_7km-3d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-cur_my_2-5km_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_glo_phy_myint_0-083deg_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-bottomt_myint_7km-2d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-ssh_my_7km-2d_pt1h-i-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-uv_my_7km-3d_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-mld_my_2-5km_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-ssh_my_2-5km_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-ssh_my_2-5km_p1y-m-geoseries&#39;,
+ &#39;dataset-bal-reanalysis-wav-hourly-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-tem_myint_2-5km_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_blk_wav_my_2-5km_pt1h-i-geoseries&#39;,
+ &#39;cmems_mod_blk_wav_my_2-5km_pt1h-i-timeseries&#39;,
+ &#39;cmems_mod_blk_wav_myint_2-5km_pt1h-i-geoseries&#39;,
+ &#39;cmems_mod_blk_wav_myint_2-5km_pt1h-i-timeseries&#39;,
+ &#39;cmems_mod_glo_phy_my_0-083deg-climatology_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_glo_phy_my_0-083deg-climatology_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_glo_phy_my_0-083deg_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_glo_phy_myint_0-083deg_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_glo_phy_my_0-083deg_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_glo_phy_myint_0-083deg_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_ibi_wav_my_0-027deg_pt1h-i-geoseries&#39;,
+ &#39;cmems_mod_ibi_wav_my_0-027deg_pt1h-i-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-bottomt_my_7km-2d_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-bottomt_my_7km-2d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-bottomt_my_7km-2d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-bottomt_my_7km-2d_pt1h-i-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-bottomt_my_7km-2d_pt1h-i-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-mld_my_7km-2d_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-mld_my_7km-2d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-mld_my_7km-2d_pt1h-i-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-mld_my_7km-2d_pt1h-i-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-mld_myint_7km-2d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-mld_myint_7km-2d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-ssh_my_7km-2d_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-s_myint_7km-3d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-ssh_my_7km-2d_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-ssh_my_7km-2d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-s_my_7km-3d_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-s_my_7km-3d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-s_my_7km-3d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-s_myint_7km-3d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-ssh_my_7km-2d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-ssh_myint_7km-2d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-ssh_myint_7km-2d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-sss_my_7km-2d_pt1h-i-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-sss_my_7km-2d_pt1h-i-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-sst_my_7km-2d_pt1h-i-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-sst_my_7km-2d_pt1h-i-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-t_my_7km-3d_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-t_my_7km-3d_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-t_my_7km-3d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-t_my_7km-3d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-t_myint_7km-3d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-t_myint_7km-3d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-uv_my_7km-2d_pt1h-i-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-uv_my_7km-2d_pt1h-i-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-uv_my_7km-3d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-uv_my_7km-3d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-uv_myint_7km-3d_p1m-m-geoseries&#39;,
+ &#39;cmems_obs-wind_glo_phy_my_l4_p1m-geoseries&#39;,
+ &#39;cmems_obs-wind_glo_phy_my_l4_p1m-timeseries&#39;,
+ &#39;cmems_mod_glo_phy_my_0-083-climatology_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-mld_my_2-5km_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-cur_myint_2-5km_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-uv_my_7km-3d_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-cur_my_2-5km_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-cur_my_2-5km_p1m-m-timeseries&#39;,
+ &#39;oceanum_ocean_nz_schism_v1&#39;,
+ &#39;cmems_mod_blk_phy-tem_my_2-5km_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-tem_my_2-5km_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-sal_myint_2-5km_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-sal_myint_2-5km_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-tem_my_2-5km_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-sal_my_2-5km_p1y-m-timeseries&#39;,
  &#39;oceanum_wave_blacksea_cfsr_v1_spec&#39;,
- &#39;mercator_europe_nwshelf_surface&#39;,
- &#39;oceanum-jervis_bay_ccam&#39;,
- &#39;oceanum-jervis_bay_ccam_test&#39;,
- &#39;cliflo_wind_3445_homogenised_gapfilled&#39;,
- &#39;gridstats_oceanum_datacube_nz_schism_v1&#39;,
- &#39;gridstats_oceanum_datacube_nz_swan_v1&#39;]
+ &#39;cmems_mod_nws_phy-mld_my_7km-2d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-cur_my_2-5km_p1d-m-geoseries&#39;,
+ &#39;oceanum_wave_blacksea_cfsr_v1_grid&#39;,
+ &#39;cmems_mod_blk_phy-sal_my_2-5km_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-mld_my_2-5km_p1m-m-geoseries&#39;,
+ &#39;oceanum_ocean_nz_schism_zlevels_v1&#39;,
+ &#39;cmems_mod_glo_phy_my_0-083deg_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_glo_phy_myint_0-083deg_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-cur_my_2-5km_p1y-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-ssh_my_2-5km_p1m-m-timeseries&#39;,
+ &#39;dataset-bal-reanalysis-wav-hourly-timeseries&#39;,
+ &#39;cmems_mod_glo_phy_my_0-083deg_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-mld_myint_2-5km_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-mld_my_2-5km_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-cur_my_2-5km_p1y-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-tem_my_2-5km_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-sal_my_2-5km_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-mld_myint_2-5km_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-tem_myint_2-5km_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-cur_myint_2-5km_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_glo_phy_my_0-083-climatology_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-mld_my_2-5km_p1y-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-mld_my_7km-2d_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-sal_my_2-5km_p1y-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-ssh_my_2-5km_p1y-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-ssh_myint_2-5km_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-ssh_my_7km-2d_pt1h-i-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-mld_my_2-5km_p1y-m-geoseries&#39;]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[82]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lets check the docs to write the datasource</span>
@@ -1166,8 +1378,11 @@ datamesh<span class="ansi-blue-fg">.</span>write_datasource<span class="ansi-blu
     datasource_id<span class="ansi-blue-fg">,</span>
     data<span class="ansi-blue-fg">,</span>
     geometry<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
+    coordinates<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
+    geom<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
     append<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
     overwrite<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">,</span>
+    index<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
     <span class="ansi-blue-fg">**</span>properties<span class="ansi-blue-fg">,</span>
 <span class="ansi-blue-fg">)</span>
 <span class="ansi-red-fg">Docstring:</span>
@@ -1177,18 +1392,19 @@ Args:
     datasource_id (string): Unique datasource id
     data (Union[:obj:`pandas.DataFrame`, :obj:`geopandas.GeoDataFrame`, :obj:`xarray.Dataset`, None]):  The data to be written to datamesh. If data is None, just update metadata properties.
     geometry (:obj:`oceanum.datasource.Geometry`, optional): GeoJSON geometry of the datasource
+    coordinates (Dict[:obj:`oceanum.datasource.Coordinates`,str], optional): Coordinate mapping for xarray datasets. default=None
     append (string, optional): Coordinate to append on. default=None
     overwrite (bool, optional): Overwrite existing datasource. default=False
     **properties: Additional properties for the datasource - see :obj:`oceanum.datamesh.Datasource`
 
 Returns:
     :obj:`oceanum.datamesh.Datasource`: The datasource instance that was written to
-<span class="ansi-red-fg">File:</span>      /source/github-oceanum-io/notebooks/.venv/lib/python3.11/site-packages/oceanum/datamesh/connection.py
+<span class="ansi-red-fg">File:</span>      /source/oceanum/occ/docs/.venv/lib/python3.12/site-packages/oceanum/datamesh/connection.py
 <span class="ansi-red-fg">Type:</span>      method
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[83]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># As mentioned in the docs above, lets check the relevant datasource properties that we may want to write</span>
@@ -1205,20 +1421,21 @@ Datasource<span class="o">?</span>
 <span class="ansi-red-fg">Init signature:</span>
 Datasource<span class="ansi-blue-fg">(</span>
     <span class="ansi-blue-fg">*</span><span class="ansi-blue-fg">,</span>
-    id<span class="ansi-blue-fg">:</span> typing<span class="ansi-blue-fg">.</span>Annotated<span class="ansi-blue-fg">[</span>str<span class="ansi-blue-fg">,</span> MinLen<span class="ansi-blue-fg">(</span>min_length<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">3</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> MaxLen<span class="ansi-blue-fg">(</span>max_length<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">80</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> _PydanticGeneralMetadata<span class="ansi-blue-fg">(</span>pattern<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;^[a-z0-9-_]+$&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span>
-    name<span class="ansi-blue-fg">:</span> typing<span class="ansi-blue-fg">.</span>Annotated<span class="ansi-blue-fg">[</span>str<span class="ansi-blue-fg">,</span> MaxLen<span class="ansi-blue-fg">(</span>max_length<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">64</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span>
+    id<span class="ansi-blue-fg">:</span> Annotated<span class="ansi-blue-fg">[</span>str<span class="ansi-blue-fg">,</span> MinLen<span class="ansi-blue-fg">(</span>min_length<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">3</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> MaxLen<span class="ansi-blue-fg">(</span>max_length<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">80</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> _PydanticGeneralMetadata<span class="ansi-blue-fg">(</span>pattern<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;^[a-z0-9-_]+$&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span>
+    name<span class="ansi-blue-fg">:</span> Annotated<span class="ansi-blue-fg">[</span>str<span class="ansi-blue-fg">,</span> MaxLen<span class="ansi-blue-fg">(</span>max_length<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">128</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span>
     description<span class="ansi-blue-fg">:</span> Annotated<span class="ansi-blue-fg">[</span>Optional<span class="ansi-blue-fg">[</span>str<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> MaxLen<span class="ansi-blue-fg">(</span>max_length<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">1500</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">&#39;&#39;</span><span class="ansi-blue-fg">,</span>
     parameters<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>dict<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span>
-    geom<span class="ansi-blue-fg">:</span> Annotated<span class="ansi-blue-fg">[</span>Union<span class="ansi-blue-fg">[</span>shapely<span class="ansi-blue-fg">.</span>geometry<span class="ansi-blue-fg">.</span>point<span class="ansi-blue-fg">.</span>Point<span class="ansi-blue-fg">,</span> shapely<span class="ansi-blue-fg">.</span>geometry<span class="ansi-blue-fg">.</span>multipoint<span class="ansi-blue-fg">.</span>MultiPoint<span class="ansi-blue-fg">,</span> shapely<span class="ansi-blue-fg">.</span>geometry<span class="ansi-blue-fg">.</span>polygon<span class="ansi-blue-fg">.</span>Polygon<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&lt;</span><span class="ansi-green-fg">class</span> <span class="ansi-blue-fg">&#39;oceanum.datamesh.datasource._GeometryAnnotation&#39;</span><span class="ansi-blue-fg">&gt;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span>
+    geom<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>Annotated<span class="ansi-blue-fg">[</span>Union<span class="ansi-blue-fg">[</span>shapely<span class="ansi-blue-fg">.</span>geometry<span class="ansi-blue-fg">.</span>point<span class="ansi-blue-fg">.</span>Point<span class="ansi-blue-fg">,</span> shapely<span class="ansi-blue-fg">.</span>geometry<span class="ansi-blue-fg">.</span>multipoint<span class="ansi-blue-fg">.</span>MultiPoint<span class="ansi-blue-fg">,</span> shapely<span class="ansi-blue-fg">.</span>geometry<span class="ansi-blue-fg">.</span>polygon<span class="ansi-blue-fg">.</span>Polygon<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&lt;</span><span class="ansi-green-fg">class</span> <span class="ansi-blue-fg">&#39;oceanum.datamesh.datasource._GeometryAnnotation&#39;</span><span class="ansi-blue-fg">&gt;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
     tstart<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>datetime<span class="ansi-blue-fg">.</span>datetime<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
     tend<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>datetime<span class="ansi-blue-fg">.</span>datetime<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
-    parchive<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>Annotated<span class="ansi-blue-fg">[</span>datetime<span class="ansi-blue-fg">.</span>timedelta<span class="ansi-blue-fg">,</span> BeforeValidator<span class="ansi-blue-fg">(</span>func<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&lt;</span>function parse_period at <span class="ansi-cyan-fg">0x7f337585cd60</span><span class="ansi-blue-fg">&gt;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
+    pforecast<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>Annotated<span class="ansi-blue-fg">[</span>datetime<span class="ansi-blue-fg">.</span>timedelta<span class="ansi-blue-fg">,</span> BeforeValidator<span class="ansi-blue-fg">(</span>func<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&lt;</span>function parse_period at <span class="ansi-cyan-fg">0x7fe31a09cd60</span><span class="ansi-blue-fg">&gt;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
+    parchive<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>Annotated<span class="ansi-blue-fg">[</span>datetime<span class="ansi-blue-fg">.</span>timedelta<span class="ansi-blue-fg">,</span> BeforeValidator<span class="ansi-blue-fg">(</span>func<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&lt;</span>function parse_period at <span class="ansi-cyan-fg">0x7fe31a09cd60</span><span class="ansi-blue-fg">&gt;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
     tags<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>list<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span>
-    info<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>dict<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">&#39;&#39;</span><span class="ansi-blue-fg">,</span>
+    info<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>dict<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span>
     schema<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>oceanum<span class="ansi-blue-fg">.</span>datamesh<span class="ansi-blue-fg">.</span>datasource<span class="ansi-blue-fg">.</span>Schema<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> Schema<span class="ansi-blue-fg">(</span>attrs<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span> dims<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span> coords<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span> data_vars<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>
-    coordinates<span class="ansi-blue-fg">:</span> Dict<span class="ansi-blue-fg">[</span>oceanum<span class="ansi-blue-fg">.</span>datamesh<span class="ansi-blue-fg">.</span>datasource<span class="ansi-blue-fg">.</span>Coordinates<span class="ansi-blue-fg">,</span> str<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span>
+    coordinates<span class="ansi-blue-fg">:</span> Dict<span class="ansi-blue-fg">[</span>oceanum<span class="ansi-blue-fg">.</span>datamesh<span class="ansi-blue-fg">.</span>datasource<span class="ansi-blue-fg">.</span>Coordinates<span class="ansi-blue-fg">,</span> str<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span>
     details<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>Annotated<span class="ansi-blue-fg">[</span>pydantic_core<span class="ansi-blue-fg">.</span>_pydantic_core<span class="ansi-blue-fg">.</span>Url<span class="ansi-blue-fg">,</span> UrlConstraints<span class="ansi-blue-fg">(</span>max_length<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> allowed_schemes<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;http&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;https&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> host_required<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> default_host<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> default_port<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> default_path<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
-    last_modified<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>datetime<span class="ansi-blue-fg">.</span>datetime<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> datetime<span class="ansi-blue-fg">.</span>datetime<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">2024</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">9</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">23</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">23</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">560522</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>
+    last_modified<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>datetime<span class="ansi-blue-fg">.</span>datetime<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> datetime<span class="ansi-blue-fg">.</span>datetime<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">2024</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">6</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">18</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">11</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">33</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">6</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">692617</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>
     args<span class="ansi-blue-fg">:</span> Optional<span class="ansi-blue-fg">[</span>dict<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span>
     driver<span class="ansi-blue-fg">:</span> str<span class="ansi-blue-fg">,</span>
 <span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">-&gt;</span> <span class="ansi-green-fg">None</span>
@@ -1230,20 +1447,20 @@ Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cann
 validated to form a valid model.
 
 `self` is explicitly positional-only to allow `self` as a field name.
-<span class="ansi-red-fg">File:</span>           /source/github-oceanum-io/notebooks/.venv/lib/python3.11/site-packages/oceanum/datamesh/datasource.py
+<span class="ansi-red-fg">File:</span>           /source/oceanum/occ/docs/.venv/lib/python3.12/site-packages/oceanum/datamesh/datasource.py
 <span class="ansi-red-fg">Type:</span>           ModelMetaclass
 <span class="ansi-red-fg">Subclasses:</span>
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[92]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lets try writing the new data to datamesh. Here we set the tags, times and geom properties to aid searching later</span>
 <span class="n">times</span> <span class="o">=</span> <span class="n">era5_nz</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 
 <span class="n">datasource</span> <span class="o">=</span> <span class="n">datamesh</span><span class="o">.</span><span class="n">write_datasource</span><span class="p">(</span><span class="n">datasource_id</span><span class="o">=</span><span class="s1">&#39;era5_nz_10m_wind_demo&#39;</span><span class="p">,</span>
-                          <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Mean NZ ERA5 Surface Winds&quot;</span><span class="p">,</span>
+                          <span class="n">name</span><span class="o">=</span><span class="s2">&quot;NZ ERA5 Surface Winds Subset&quot;</span><span class="p">,</span>
                           <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ERA5 winds over New Zealand&quot;</span><span class="p">,</span>
                           <span class="n">data</span><span class="o">=</span><span class="n">era5_nz</span><span class="p">,</span>
                           <span class="n">coordinates</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;t&quot;</span><span class="p">:</span><span class="s2">&quot;time&quot;</span><span class="p">,</span><span class="s2">&quot;x&quot;</span><span class="p">:</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span><span class="s2">&quot;y&quot;</span><span class="p">:</span><span class="s2">&quot;latitude&quot;</span><span class="p">},</span>
@@ -1261,22 +1478,22 @@ validated to form a valid model.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[92]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-        Mean NZ ERA5 Surface Winds [era5_nz_10m_wind_demo]
+        NZ ERA5 Surface Winds Subset [era5_nz_10m_wind_demo]
             Extent: (165.0, -48.0, 180.0, -33.0)
             Timerange: 2000-01-01 00:00:00 to 2000-01-07 00:00:00
-            3 attributes
-            2 variables
+            4 attributes
+            3 variables
 
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[84]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now if we check again, we should see our demo dataset that we have just written</span>
@@ -1286,86 +1503,216 @@ validated to form a valid model.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[84]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&#39;oceanum_wave_nz5km_era5_spec&#39;,
- &#39;era5_mean_surface_downward_short_wave_radiation_flux&#39;,
+[&#39;oceanum_wave_bass_5km_era5_grid&#39;,
+ &#39;oceanum_wave_ptlan_1km_era5_spec&#39;,
+ &#39;oceanum_wave_ense_era5_grid&#39;,
+ &#39;oceanum_wave_swna_era5_grid&#39;,
+ &#39;oceanum_wave_ense_era5_spec&#39;,
+ &#39;oceanum_wave_cali_era5_grid&#39;,
+ &#39;oceanum_wave_swna_era5_spec&#39;,
+ &#39;oceanum_wave_cali_era5_spec&#39;,
+ &#39;oceanum_ocean_otago_schism_zlevels&#39;,
+ &#39;oceanum_ocean_bass_schism_v1&#39;,
+ &#39;oceanum_wave_ebass_1km_era5_spec&#39;,
+ &#39;oceanum_wave_bass_5km_era5_spec&#39;,
+ &#39;oceanum_wave_ptlan_1km_era5_grid&#39;,
+ &#39;gridstas_oceanum_wave_glob05_era5_v1&#39;,
+ &#39;gridstats_oceanum_wave_era5_trki_v1&#39;,
+ &#39;oceanum_ocean_auckland_schism_v1&#39;,
+ &#39;gridstats_oceanum_wave_era5_nz_v1&#39;,
+ &#39;oceanum_wave_ebass_1km_era5_grid&#39;,
+ &#39;gridstats_oceanum_wave_era5_weuro_v1&#39;,
+ &#39;era5_wind100m&#39;,
+ &#39;era5_wind10m&#39;,
  &#39;oceanum_wave_glob05_era5_v1_grid&#39;,
+ &#39;era5_temp2m&#39;,
  &#39;oceanum_wave_mediterranean_era5_v1_grid&#39;,
+ &#39;oceanum_wave_redsea_era5_grid&#39;,
+ &#39;oceanum_wave_weuro_era5_v1_grid&#39;,
+ &#39;stats_era5_wind100m&#39;,
+ &#39;era5_seaicecon&#39;,
+ &#39;oceanum_wave_redsea_era5_spec&#39;,
+ &#39;oceanum_wave_nz_era5_v1_grid&#39;,
+ &#39;oceanum_wave_trki_era5_v1_grid&#39;,
+ &#39;oceanum_wave_useast_era5_v1_spec&#39;,
+ &#39;era5_mean_surface_downward_short_wave_radiation_flux&#39;,
  &#39;oceanum_wave_nz1km_multiscale_era5_param&#39;,
+ &#39;oceanum_wave_ptaranaki_era5_grid&#39;,
+ &#39;era5_precip_rate&#39;,
+ &#39;oceanum_wave_glob05_era5_v1_spec&#39;,
  &#39;oceanum_wave_nz1km_nz01_era5_spec&#39;,
- &#39;oceanum_wave_nz1km_nz02_era5_spec&#39;,
- &#39;oceanum_wave_nz1km_nz03_era5_spec&#39;,
  &#39;oceanum_wave_nz1km_nz04_era5_spec&#39;,
  &#39;oceanum_wave_nz1km_nz05_era5_spec&#39;,
+ &#39;oceanum_wave_wtwan_era5_v1_grid&#39;,
+ &#39;oceanum_wave_nz1km_nz10_era5_spec&#39;,
+ &#39;oceanum_wave_teararoa_era5_grid&#39;,
+ &#39;oceanum_wave_nz1km_nz11_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz12_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz14_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz16_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz17_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz19_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz20_era5_spec&#39;,
+ &#39;oceanum_wave_nz5km_era5_spec&#39;,
+ &#39;oceanum_wave_wtwan_era5_v1_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz02_era5_spec&#39;,
+ &#39;oceanum_wave_nz1km_nz03_era5_spec&#39;,
  &#39;oceanum_wave_nz1km_nz06_era5_spec&#39;,
  &#39;oceanum_wave_nz1km_nz07_era5_spec&#39;,
  &#39;oceanum_wave_nz1km_nz08_era5_spec&#39;,
  &#39;oceanum_wave_nz1km_nz09_era5_spec&#39;,
- &#39;oceanum_wave_nz1km_nz10_era5_spec&#39;,
- &#39;oceanum_wave_nz1km_nz11_era5_spec&#39;,
- &#39;oceanum_wave_nz1km_nz12_era5_spec&#39;,
  &#39;oceanum_wave_nz1km_nz13_era5_spec&#39;,
- &#39;oceanum_wave_nz1km_nz14_era5_spec&#39;,
  &#39;oceanum_wave_nz1km_nz15_era5_spec&#39;,
- &#39;oceanum_wave_nz1km_nz16_era5_spec&#39;,
- &#39;oceanum_wave_nz1km_nz17_era5_spec&#39;,
  &#39;oceanum_wave_nz1km_nz18_era5_spec&#39;,
- &#39;oceanum_wave_nz1km_nz19_era5_spec&#39;,
- &#39;oceanum_wave_nz1km_nz20_era5_spec&#39;,
- &#39;oceanum_wave_nz_era5_v1_grid&#39;,
- &#39;oceanum_wave_ptaranaki_era5_grid&#39;,
- &#39;oceanum_wave_redsea_era5_grid&#39;,
- &#39;oceanum_wave_redsea_era5_spec&#39;,
- &#39;oceanum_wave_teararoa_era5_grid&#39;,
- &#39;oceanum_wave_trki_era5_v1_grid&#39;,
- &#39;oceanum_wave_weuro_era5_v1_grid&#39;,
- &#39;oceanum_wave_weuro_era5_v1_spec&#39;,
- &#39;oceanum_wave_wtwan_era5_v1_grid&#39;,
- &#39;era5_nz_10m_wind_demo&#39;,
- &#39;era5_seaicecon&#39;,
- &#39;era5_temp2m&#39;,
- &#39;era5_wind100m&#39;,
- &#39;era5_wind10m&#39;,
- &#39;era5_mslp&#39;,
- &#39;oceanum_wave_ptlan_era5_grid&#39;,
- &#39;oceanum_wave_trki_era5_v1_spec&#39;,
- &#39;oceanum_wave_useast_era5_v1_spec&#39;,
- &#39;gridstas_oceanum_wave_glob05_era5_v1&#39;,
- &#39;gridstats_oceanum_wave_era5_nz_v1&#39;,
- &#39;gridstats_oceanum_wave_era5_trki_v1&#39;,
- &#39;gridstats_oceanum_wave_era5_weuro_v1&#39;,
- &#39;oceanum_wave_bass_era5_grid&#39;,
- &#39;oceanum_wave_bass_era5_spec&#39;,
- &#39;oceanum_wave_glob05_era5_v1_spec&#39;,
+ &#39;stats_era5_wind10m&#39;,
  &#39;oceanum_wave_nz_era5_v1_spec&#39;,
+ &#39;oceanum_wave_trki_era5_v1_spec&#39;,
+ &#39;era5_schism_nz&#39;,
  &#39;oceanum_wave_mediterranean_era5_v1_spec&#39;,
- &#39;oceanum_wave_ntas_era5_grid&#39;,
- &#39;oceanum_wave_ntas_era5_spec&#39;,
- &#39;oceanum_wave_wtwan_era5_v1_spec&#39;,
- &#39;era5_precip_rate&#39;,
- &#39;oceanum_wave_ptlan_era5_spec&#39;,
- &#39;oceanum_ocean_nz_schism_v1&#39;,
- &#39;gridstats_oceanum_meteo_era5_trki_1km_v1&#39;,
+ &#39;era5_mslp&#39;,
+ &#39;era5_nz_10m_wind_demo&#39;,
+ &#39;oceanum_wave_weuro_era5_v1_spec&#39;,
  &#39;oceanum_wave_glob05_era5_v1_grid_test&#39;,
- &#39;our-changing-coast-coast_rp&#39;,
- &#39;oceanum_ocean_nz_schism_zlevels_v1&#39;,
- &#39;era5_nz_mean_windpsd_demo&#39;,
- &#39;oceanum_wave_blacksea_cfsr_v1_grid&#39;,
+ &#39;gridstats_oceanum_meteo_era5_trki_1km_v1&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_my_0-25deg_p1m-m-geoseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_my_0-25deg_p1m-m-timeseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_nrt_0-25deg_p1m-m-geoseries&#39;,
+ &#39;cmems_obs-wind_glo_phy_my_l4_0-25deg_pt1h-geoseries&#39;,
+ &#39;cmems_obs-wind_glo_phy_my_l4_0-125deg_pt1h-geoseries&#39;,
+ &#39;cmems_obs-wind_glo_phy_my_l4_0-125deg_pt1h-timeseries&#39;,
+ &#39;cmems_obs-wind_glo_phy_my_l4_0-25deg_pt1h-timeseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_my_0-25deg_pt1h-i-geoseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_my_0-25deg_pt1h-i-timeseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_nrt_0-25deg_p1d-m-geoseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_nrt_0-25deg_p1d-m-timeseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_nrt_0-25deg_p1m-m-timeseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_nrt_0-25deg_pt1h-i-timeseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_nrt_0-25deg_pt1h-i-geoseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_my_0-25deg_p1d-m-timeseries&#39;,
+ &#39;cmems_obs_mob_glo_phy-cur_my_0-25deg_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-sal_my_2-5km_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-ssh_my_2-5km_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-ssh_my_2-5km_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-ssh_myint_2-5km_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-tem_my_2-5km_p1y-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-tem_my_2-5km_p1y-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-bottomt_my_7km-2d_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-bottomt_myint_7km-2d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-s_my_7km-3d_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-uv_myint_7km-3d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-cur_my_2-5km_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_glo_phy_myint_0-083deg_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-bottomt_myint_7km-2d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-ssh_my_7km-2d_pt1h-i-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-uv_my_7km-3d_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-mld_my_2-5km_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-ssh_my_2-5km_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-ssh_my_2-5km_p1y-m-geoseries&#39;,
+ &#39;dataset-bal-reanalysis-wav-hourly-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-tem_myint_2-5km_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_blk_wav_my_2-5km_pt1h-i-geoseries&#39;,
+ &#39;cmems_mod_blk_wav_my_2-5km_pt1h-i-timeseries&#39;,
+ &#39;cmems_mod_blk_wav_myint_2-5km_pt1h-i-geoseries&#39;,
+ &#39;cmems_mod_blk_wav_myint_2-5km_pt1h-i-timeseries&#39;,
+ &#39;cmems_mod_glo_phy_my_0-083deg-climatology_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_glo_phy_my_0-083deg-climatology_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_glo_phy_my_0-083deg_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_glo_phy_myint_0-083deg_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_glo_phy_my_0-083deg_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_glo_phy_myint_0-083deg_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_ibi_wav_my_0-027deg_pt1h-i-geoseries&#39;,
+ &#39;cmems_mod_ibi_wav_my_0-027deg_pt1h-i-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-bottomt_my_7km-2d_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-bottomt_my_7km-2d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-bottomt_my_7km-2d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-bottomt_my_7km-2d_pt1h-i-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-bottomt_my_7km-2d_pt1h-i-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-mld_my_7km-2d_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-mld_my_7km-2d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-mld_my_7km-2d_pt1h-i-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-mld_my_7km-2d_pt1h-i-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-mld_myint_7km-2d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-mld_myint_7km-2d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-ssh_my_7km-2d_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-s_myint_7km-3d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-ssh_my_7km-2d_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-ssh_my_7km-2d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-s_my_7km-3d_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-s_my_7km-3d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-s_my_7km-3d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-s_myint_7km-3d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-ssh_my_7km-2d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-ssh_myint_7km-2d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-ssh_myint_7km-2d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-sss_my_7km-2d_pt1h-i-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-sss_my_7km-2d_pt1h-i-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-sst_my_7km-2d_pt1h-i-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-sst_my_7km-2d_pt1h-i-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-t_my_7km-3d_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-t_my_7km-3d_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-t_my_7km-3d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-t_my_7km-3d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-t_myint_7km-3d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-t_myint_7km-3d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-uv_my_7km-2d_pt1h-i-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-uv_my_7km-2d_pt1h-i-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-uv_my_7km-3d_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-uv_my_7km-3d_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-uv_myint_7km-3d_p1m-m-geoseries&#39;,
+ &#39;cmems_obs-wind_glo_phy_my_l4_p1m-geoseries&#39;,
+ &#39;cmems_obs-wind_glo_phy_my_l4_p1m-timeseries&#39;,
+ &#39;cmems_mod_glo_phy_my_0-083-climatology_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_glo_phy_myint_0-083deg_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-mld_my_2-5km_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_nws_phy-uv_my_7km-3d_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-cur_my_2-5km_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-cur_myint_2-5km_p1m-m-geoseries&#39;,
+ &#39;oceanum_ocean_nz_schism_v1&#39;,
+ &#39;cmems_mod_blk_phy-tem_my_2-5km_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-tem_my_2-5km_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-sal_myint_2-5km_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-sal_myint_2-5km_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-tem_my_2-5km_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-sal_my_2-5km_p1y-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-cur_my_2-5km_p1m-m-timeseries&#39;,
  &#39;oceanum_wave_blacksea_cfsr_v1_spec&#39;,
- &#39;mercator_europe_nwshelf_surface&#39;,
- &#39;oceanum-jervis_bay_ccam&#39;,
- &#39;oceanum-jervis_bay_ccam_test&#39;,
- &#39;cliflo_wind_3445_homogenised_gapfilled&#39;,
- &#39;gridstats_oceanum_datacube_nz_schism_v1&#39;,
- &#39;gridstats_oceanum_datacube_nz_swan_v1&#39;]
+ &#39;cmems_mod_nws_phy-mld_my_7km-2d_p1m-m-timeseries&#39;,
+ &#39;oceanum_wave_blacksea_cfsr_v1_grid&#39;,
+ &#39;cmems_mod_blk_phy-cur_my_2-5km_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-sal_my_2-5km_p1m-m-geoseries&#39;,
+ &#39;oceanum_ocean_nz_schism_zlevels_v1&#39;,
+ &#39;cmems_mod_blk_phy-mld_my_2-5km_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_glo_phy_my_0-083deg_p1d-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-ssh_my_2-5km_p1m-m-timeseries&#39;,
+ &#39;dataset-bal-reanalysis-wav-hourly-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-cur_my_2-5km_p1y-m-geoseries&#39;,
+ &#39;cmems_mod_glo_phy_my_0-083deg_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-mld_myint_2-5km_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-mld_my_2-5km_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-cur_my_2-5km_p1y-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-tem_my_2-5km_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-sal_my_2-5km_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-mld_myint_2-5km_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-tem_myint_2-5km_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-cur_myint_2-5km_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_glo_phy_my_0-083-climatology_p1m-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-mld_my_2-5km_p1y-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-mld_my_7km-2d_p1d-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-sal_my_2-5km_p1y-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-ssh_my_2-5km_p1y-m-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-ssh_myint_2-5km_p1m-m-timeseries&#39;,
+ &#39;cmems_mod_nws_phy-ssh_my_7km-2d_pt1h-i-timeseries&#39;,
+ &#39;cmems_mod_blk_phy-mld_my_2-5km_p1y-m-geoseries&#39;,
+ &#39;cmems_mod_blk_phy-sal_my_2-5km_p1d-m-geoseries&#39;]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[93]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now if we check again, we can also search on the tags we have written</span>
@@ -1375,32 +1722,33 @@ validated to form a valid model.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[93]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&#39;era5_nz_10m_wind_demo&#39;]
+[&#39;era5_nz_10m_wind_demo&#39;, &#39;oceanum_ww3_tests_grid&#39;, &#39;oceanum_ww3_test_grid&#39;]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[94]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now we can treat this dataset like any dataset.</span>
 <span class="c1"># For example, lets open the dataset using load_datasource, and extract and plot a single point using standard xarray slicing</span>
+
 <span class="n">ds</span> <span class="o">=</span> <span class="n">datamesh</span><span class="o">.</span><span class="n">load_datasource</span><span class="p">(</span><span class="s1">&#39;era5_nz_10m_wind_demo&#39;</span><span class="p">)</span>
 <span class="n">ds</span><span class="o">.</span><span class="n">u10</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">latitude</span><span class="o">=-</span><span class="mi">50</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="mi">170</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[94]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&lt;matplotlib.lines.Line2D at 0x7f3335a19e50&gt;]
+[&lt;matplotlib.lines.Line2D at 0x7fe30cc9da30&gt;]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1411,16 +1759,17 @@ validated to form a valid model.
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[96]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Finally, lets delete this demo dataset</span>
+
 <span class="n">datamesh</span><span class="o">.</span><span class="n">delete_datasource</span><span class="p">(</span><span class="n">datasource_id</span><span class="o">=</span><span class="s1">&#39;era5_nz_10m_wind_demo&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[96]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1429,22 +1778,23 @@ True
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[97]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># And check thats its gone</span>
+
 <span class="n">cat</span> <span class="o">=</span> <span class="n">datamesh</span><span class="o">.</span><span class="n">get_catalog</span><span class="p">(</span><span class="s1">&#39;demo&#39;</span><span class="p">)</span>
 <span class="n">cat</span><span class="o">.</span><span class="n">ids</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[97]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[]
+[&#39;oceanum_ww3_tests_grid&#39;, &#39;oceanum_ww3_test_grid&#39;]
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -1507,8 +1857,8 @@ True
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Install-libraries">Install libraries</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Connect-to-datamesh">Connect to datamesh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Timeseries-data">Timeseries data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Gridded-data">Gridded data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Extract-gridded-data">Extract gridded data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Writing-data">Writing data</a></li>
 </ul>
 </li>
 </ul>
