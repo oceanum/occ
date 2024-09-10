@@ -13,3 +13,4 @@ Thumbnails gallery
     notebooks/multiscale_tidegrid_demo.ipynb
     notebooks/linz_dem_example.ipynb
     notebooks/shoreline_change.ipynb
+    notebooks/BARPA_demo.ipynb
